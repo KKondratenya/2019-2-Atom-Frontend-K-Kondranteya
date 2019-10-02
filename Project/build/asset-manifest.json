@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/your_repo_name/static/css/main.b4eae362.chunk.css",
-    "main.js": "/your_repo_name/static/js/main.5fe1c023.chunk.js",
-    "main.js.map": "/your_repo_name/static/js/main.5fe1c023.chunk.js.map",
-    "runtime-main.js": "/your_repo_name/static/js/runtime-main.f1fb5b86.js",
-    "runtime-main.js.map": "/your_repo_name/static/js/runtime-main.f1fb5b86.js.map",
-    "static/js/2.76e1b8b0.chunk.js": "/your_repo_name/static/js/2.76e1b8b0.chunk.js",
-    "static/js/2.76e1b8b0.chunk.js.map": "/your_repo_name/static/js/2.76e1b8b0.chunk.js.map",
-    "index.html": "/your_repo_name/index.html",
-    "precache-manifest.1c753112c11bd4d0c05e621962bf397e.js": "/your_repo_name/precache-manifest.1c753112c11bd4d0c05e621962bf397e.js",
-    "service-worker.js": "/your_repo_name/service-worker.js",
-    "static/css/main.b4eae362.chunk.css.map": "/your_repo_name/static/css/main.b4eae362.chunk.css.map",
-    "static/media/logo.svg": "/your_repo_name/static/media/logo.a55f1c43.svg"
+    "main.css": "/2019-2-Atom-Frontend-K-Kondranteya/static/css/main.b4eae362.chunk.css",
+    "main.js": "/2019-2-Atom-Frontend-K-Kondranteya/static/js/main.0c640979.chunk.js",
+    "main.js.map": "/2019-2-Atom-Frontend-K-Kondranteya/static/js/main.0c640979.chunk.js.map",
+    "runtime-main.js": "/2019-2-Atom-Frontend-K-Kondranteya/static/js/runtime-main.b25c0254.js",
+    "runtime-main.js.map": "/2019-2-Atom-Frontend-K-Kondranteya/static/js/runtime-main.b25c0254.js.map",
+    "static/js/2.76e1b8b0.chunk.js": "/2019-2-Atom-Frontend-K-Kondranteya/static/js/2.76e1b8b0.chunk.js",
+    "static/js/2.76e1b8b0.chunk.js.map": "/2019-2-Atom-Frontend-K-Kondranteya/static/js/2.76e1b8b0.chunk.js.map",
+    "index.html": "/2019-2-Atom-Frontend-K-Kondranteya/index.html",
+    "precache-manifest.ca50f5a3c97cfc949cf06d58430b4abf.js": "/2019-2-Atom-Frontend-K-Kondranteya/precache-manifest.ca50f5a3c97cfc949cf06d58430b4abf.js",
+    "service-worker.js": "/2019-2-Atom-Frontend-K-Kondranteya/service-worker.js",
+    "static/css/main.b4eae362.chunk.css.map": "/2019-2-Atom-Frontend-K-Kondranteya/static/css/main.b4eae362.chunk.css.map",
+    "static/media/logo.svg": "/2019-2-Atom-Frontend-K-Kondranteya/static/media/logo.a55f1c43.svg"
   }
 }
