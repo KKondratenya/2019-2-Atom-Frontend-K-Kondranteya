@@ -26,5 +26,19 @@ nonUniqueElements([10, 9, 10, 10, 9, 8]) == [10, 9, 10, 10, 9]
 
 export default function nonUniqueElements(data) {
   // your solution goes here
-  return data
+	let map = new Map()
+	let arr = []
+	for (let elem of data) {
+		if (map.get(elem) === undefined) {
+			map.set(elem, 1)
+		} else {
+			map.set(elem, map.get(elem) + 1)
+		}
+	}
+	for (let elem of data) {
+		if (map.get(elem) > 1 ) {
+			arr.push(elem)
+		} 
+	}
+	return arr
 }

@@ -13,5 +13,17 @@
  */
 
 export default function convertBytesToHuman(bytes) {
-  // your solution goes here
+	let arr = [' B', ' KB', ' MB', ' GB', ' TB', ' PB', ' EB', ' ZB', ' YB'];
+	if (typeof bytes === 'number' && bytes >= 0) {
+		let i = 0;
+		while (bytes >= 1024 && i != arr.length - 1) {
+			bytes = bytes / 1024;
+			i++;
+		}
+		return bytes.toFixed(2) + arr[i]
+  	} 
+  	else {
+  		return false
+  	}
 }
+
