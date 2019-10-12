@@ -38,7 +38,7 @@ class MessageForm extends HTMLElement {
 
     _onSubmit (event) {
         event.preventDefault()
-        this.$message.setAttribute('text-message', this.$input.value)
+        this.$message.buildMessage(this.$input.value)
         this.$input.setAttribute('value', '')
     }
 

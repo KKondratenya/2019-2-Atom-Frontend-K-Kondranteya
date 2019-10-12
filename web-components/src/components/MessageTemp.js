@@ -46,7 +46,7 @@ class MessageTemp extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ['name', 'value', 'text-message']
+        return ['name', 'value']
     }
 
     connectedCallback() {
@@ -54,41 +54,43 @@ class MessageTemp extends HTMLElement {
             const messageContainer = localStorage.getItem('message-container')
             this.messages = JSON.parse(messageContainer)
             for (let i = 0; i < this.messages.length; i +=1) {
-                const newtext = document.createElement('div')
-                const newtext1 = document.createElement('div')
-                newtext.setAttribute('class', 'message')
-                newtext1.setAttribute('class', 'date')
-                newtext.innerHTML = this.messages[i].inner
-                newtext1.innerHTML = this.messages[i].date
-                newtext.appendChild(newtext1)
-                this.$container.prepend(newtext)
+                const messageDiv = document.createElement('div')
+                const dateDiv = document.createElement('div')
+                messageDiv.setAttribute('class', 'message')
+                dateDiv.setAttribute('class', 'date')
+                messageDiv.innerHTML = this.messages[i].inner
+                dateDiv.innerHTML = this.messages[i].date
+                messageDiv.appendChild(dateDiv)
+                this.$container.prepend(messageDiv)
             }
        } 
     }
 
+    buildMessage(value) {
+        const message = {}
+        message.inner = value
+        const date = new Date()
+        const messageDiv = document.createElement('div')
+        const dateDiv = document.createElement('div')
+        messageDiv.setAttribute('class', 'message')
+        dateDiv.setAttribute('class', 'date')
+        messageDiv.innerHTML = value
+        dateDiv.innerHTML = `${date.getHours()}:${date.getMinutes()}`
+        message.date = `${date.getHours()}:${date.getMinutes()}`
+        message.sender = 'sender'
+        message.reciever = 'reciever'
+        messageDiv.appendChild(dateDiv)
+        this.$container.prepend(messageDiv)
+        if (this.$container.scrollHeight) {
+            this.$container.scrollTop = this.$container.scrollHeight
+        }
+        this.messages.push(message)
+        const json = JSON.stringify(this.messages)
+        localStorage.setItem('message-container', json)
+    }
+
     attributeChangedCallback(name, oldValue, newValue) {
-        if (name === 'text-message') {
-            const message = {}
-            message.inner = newValue
-            const date = new Date()
-            const newtext = document.createElement('div')
-            const newtext1 = document.createElement('div')
-            newtext.setAttribute('class', 'message')
-            newtext1.setAttribute('class', 'date')
-            newtext.innerHTML = newValue
-            newtext1.innerHTML = `${date.getHours()}:${date.getMinutes()}`
-            message.date = `${date.getHours()}:${date.getMinutes()}`
-            newtext.appendChild(newtext1)
-            this.$container.prepend(newtext)
-            if (this.$container.scrollHeight) {
-                this.$container.scrollTop = this.$container.scrollHeight
-            }
-            this.messages.push(message)
-            const json = JSON.stringify(this.messages)
-            localStorage.setItem('message-container', json)
-        } else {
-            this.$input.setAttribute(name, newValue)
-        } 
+        this.$input.setAttribute(name, newValue)
     }
 }
 customElements.define('message-temp', MessageTemp)
