@@ -1,6 +1,29 @@
 const template = document.createElement('template')
 template.innerHTML = `
     <style>
+        .hat {
+            background-color: #8E24AA;
+            height: 12vh;
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .user {
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .time {
+            color: #C660CD;
+            font-size: 10px;
+
+        }
+
         form-input {
             width: 100%;
             position: fixed;
@@ -17,6 +40,14 @@ template.innerHTML = `
 
     </style>
     <from>
+        <div class='hat'>
+        <div class='user'>
+        User
+        <div class='time'>
+        Online
+        </div>
+        </div>
+        </div>
         <message-temp>
         </message-temp>
         <form-input name="message-text" placeholder="Введите сообщение"></form-input>

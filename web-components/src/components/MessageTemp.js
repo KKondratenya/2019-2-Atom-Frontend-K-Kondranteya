@@ -1,7 +1,7 @@
 const template = document.createElement('template')
 template.innerHTML = `
     <style>
-                .message {
+        .message {
             position: relative;
             margin: 10px;
             bottom: 20px;
