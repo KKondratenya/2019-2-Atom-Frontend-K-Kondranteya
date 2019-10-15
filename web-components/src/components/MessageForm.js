@@ -3,11 +3,10 @@ template.innerHTML = `
     <style>
         .hat {
             background-color: #8E24AA;
-            height: 12vh;
+            height: 10vh;
             display: flex;
             justify-content:center;
             align-items: center;
-            position: fixed;
             width: 100%;
             z-index: 100;
         }
@@ -26,12 +25,17 @@ template.innerHTML = `
 
         form-input {
             width: 100%;
-            position: fixed;
-            bottom: 0;
+            height: 2vh;
+            overflow-y: hidden;
         }
 
         from {
             height: 100vh;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            overflow-x: hidden;
+            
         }
 
         input[type=submit] {

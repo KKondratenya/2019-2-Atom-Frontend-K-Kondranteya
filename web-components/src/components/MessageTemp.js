@@ -4,24 +4,26 @@ template.innerHTML = `
         .message {
             position: relative;
             margin: 10px;
-            bottom: 20px;
             left: 10px;
-            max-width: 20%;
+            max-width: 40%;
             word-wrap:break-word;
             background-color: #F6E1F5;
             padding: 5px;           
             border-radius:10px;
+            font-size: 20px;
             border: 3px;
             align-self:flex-end;
         }
 
         .result {
             bottom: 20px;
-            height: 100vh;
+            height: 88vh;
             display: flex;
-            flex-direction: column-reverse;
+            flex-direction: column;
+            margin: 5px;
             flex-wrap: nowrap;
             overflow-y: scroll; 
+            overflow-x:hidden;
         }
 
         .date {
@@ -61,7 +63,7 @@ class MessageTemp extends HTMLElement {
                 messageDiv.innerHTML = this.messages[i].inner
                 dateDiv.innerHTML = this.messages[i].date
                 messageDiv.appendChild(dateDiv)
-                this.$container.prepend(messageDiv)
+                this.$container.appendChild(messageDiv)
             }
        } 
     }
@@ -80,7 +82,7 @@ class MessageTemp extends HTMLElement {
         message.sender = 'sender'
         message.reciever = 'reciever'
         messageDiv.appendChild(dateDiv)
-        this.$container.prepend(messageDiv)
+        this.$container.appendChild(messageDiv)
         if (this.$container.scrollHeight) {
             this.$container.scrollTop = this.$container.scrollHeight
         }
