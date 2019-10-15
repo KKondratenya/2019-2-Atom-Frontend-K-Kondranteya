@@ -11,6 +11,9 @@ template.innerHTML = `
             z-index: 100;
         }
 
+        .message-temp {
+            overflow-y:scroll;
+        }
         .user {
             color: white;
             font-size: 17px;

@@ -24,6 +24,7 @@ template.innerHTML = `
             flex-wrap: nowrap;
             overflow-y: scroll; 
             overflow-x:hidden;
+            justify-content:flex-end;
         }
 
         .date {
@@ -52,8 +53,9 @@ class MessageTemp extends HTMLElement {
     }
 
     connectedCallback() {
-       if (localStorage.getItem('message-container')) {
-            const messageContainer = localStorage.getItem('message-container')
+       const box = localStorage.getItem('message-container')
+       if (box) {
+            const messageContainer = box
             this.messages = JSON.parse(messageContainer)
             for (let i = 0; i < this.messages.length; i +=1) {
                 const messageDiv = document.createElement('div')
