@@ -22,9 +22,13 @@ template.innerHTML = `
             flex-direction: column;
             margin: 5px;
             flex-wrap: nowrap;
-            overflow-y: scroll; 
+            overflow-y: auto; 
             overflow-x:hidden;
-            justify-content:flex-end;
+            flex-flow: column nowrap;
+        }
+
+        .result > :first-child {
+            margin-top: auto !important;
         }
 
         .date {
@@ -55,7 +59,7 @@ class MessageTemp extends HTMLElement {
     connectedCallback() {
        const box = localStorage.getItem('message-container')
        if (box) {
-            const messageContainer = box
+            const messageContainer = localStorage.getItem('message-container')
             this.messages = JSON.parse(messageContainer)
             for (let i = 0; i < this.messages.length; i +=1) {
                 const messageDiv = document.createElement('div')
@@ -67,6 +71,9 @@ class MessageTemp extends HTMLElement {
                 messageDiv.appendChild(dateDiv)
                 this.$container.appendChild(messageDiv)
             }
+        if (this.$container.scrollHeight) {
+            this.$container.scrollTop = this.$container.scrollHeight
+        }
        } 
     }
 
@@ -81,8 +88,8 @@ class MessageTemp extends HTMLElement {
         messageDiv.innerHTML = value
         dateDiv.innerHTML = `${date.getHours()}:${date.getMinutes()}`
         message.date = `${date.getHours()}:${date.getMinutes()}`
-        message.sender = 'sender'
-        message.reciever = 'reciever'
+        message.sender = 'User'
+        message.reciever = 'User'
         messageDiv.appendChild(dateDiv)
         this.$container.appendChild(messageDiv)
         if (this.$container.scrollHeight) {

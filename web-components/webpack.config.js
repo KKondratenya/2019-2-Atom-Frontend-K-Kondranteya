@@ -54,6 +54,19 @@ module.exports = {
                     },
                 ],
             },
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                include: SRC_PATH,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            disable: true, // webpack@2.x and newer
+                            name: '[path][name].[ext]'
+                        },
+                    },
+                ],
+            },
         ],
     },
     plugins: [
