@@ -66,7 +66,7 @@ module.exports = {
             template: './index.html'
         }),
         new CopyWebPackPlugin([
-            {from: 'images', to:'images'}
+            {from: SRC_PATH + '/images', to:BUILD_PATH + '/images'}
         ]),
     ]
 };
