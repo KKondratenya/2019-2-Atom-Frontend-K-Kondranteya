@@ -9,4 +9,3 @@ import './components/ChatList';
 import './components/ChatHat';
 import './components/ChatPage';
 
-import './images/spongebob.jpg'
