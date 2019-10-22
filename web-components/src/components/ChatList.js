@@ -101,7 +101,7 @@ class ChatList extends HTMLElement {
             const innerDiv = document.createElement('div')
             const userDiv = document.createElement('div')
             const image = document.createElement('img')
-            image.setAttribute('src', '/images/spongebob.jpg')
+            image.setAttribute('src', 'images/spongebob.jpg')
             contactDiv.setAttribute('class', 'contact')
             userDiv.setAttribute('class', 'user')
             messageDiv.setAttribute('class', 'message')
