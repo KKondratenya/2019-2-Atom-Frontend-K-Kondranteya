@@ -31,6 +31,7 @@ template.innerHTML = `
         <chat-list>
         </chat-list>
         <button>
+        Create
         </button>
     </from>
 `
