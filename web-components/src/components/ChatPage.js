@@ -1,13 +1,6 @@
 const template = document.createElement('template')
 template.innerHTML = `
     <style>
-
-        form-input {
-            width: 100%;
-            height: 2vh;
-            overflow-y: hidden;
-        }
-
         from {
             height: 100vh;
             display: flex;
@@ -21,17 +14,29 @@ template.innerHTML = `
             visibility: collapse;
         }
 
+        button {
+            border-radius: 100%;
+            width: 50px;
+            height: 50px;
+            position: fixed;
+            left: 90%;
+            top: 80%;
+            background-color: orange;   
+            border-color: orange;
+        }
     </style>
     <from>
-        <message-hat>
-        </message-hat>
-        <message-temp>
-        </message-temp>
-        <form-input name="message-text" placeholder="Введите сообщение"></form-input>
+        <chat-hat>
+        </chat-hat>
+        <chat-list>
+        </chat-list>
+        <button>
+        Create
+        </button>
     </from>
 `
 
-class MessageForm extends HTMLElement {
+class ChatPage extends HTMLElement {
     constructor () {
         super()
         /* eslint no-underscore-dangle: ["error", { "allow": ["_shadowRoot", "_onSubmit", "_onKeyPress"] }] */
@@ -40,22 +45,19 @@ class MessageForm extends HTMLElement {
         this.$form = this._shadowRoot.querySelector('from')
         this.$input = this._shadowRoot.querySelector('form-input')
         this.$message = this._shadowRoot.querySelector('message-temp')
-        this.$form.addEventListener('submit', this._onSubmit.bind(this))
-        this.$form.addEventListener('keypress', this._onKeyPress.bind(this))
+        this.$button = this._shadowRoot.querySelector('button')
+        this.$chatList = this._shadowRoot.querySelector('chat-list')
     }
 
-    _onSubmit (event) {
-        event.preventDefault()
-        this.$message.buildMessage(this.$input.value)
-        this.$input.setAttribute('value', '')
+    static get observedAttributes() {
+        return ['style']
     }
 
-    _onKeyPress (event) {
-        if (event.keyCode === 13 && this.$input.value !== '') {
-            this.$form.dispatchEvent(new Event('submit'))
-        }
+    attributeChangedCallback(name, oldValue, newValue) {
+        this.$form.setAttribute(name, newValue)
+        this.$chatList.checkLastMessage()
     }
 
 }
 
-customElements.define('message-form', MessageForm)
+customElements.define('chat-page', ChatPage)
