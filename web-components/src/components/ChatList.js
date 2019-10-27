@@ -38,16 +38,23 @@ template.innerHTML = `
         }
 
         .user {
-            font-weight: bolder;
+            font-weight: 550;
             font-size: 4vh;
             line-height: 4vh;
         }
 
-        img {
+        .avatar {
             width:15%;
             height:15%;
             border-radius: 100%;
             object-fit: cover;
+        }
+
+        .tick {
+            height: 3vh;
+            width: 3vh; 
+            float: right;
+            
         }
 
         .contact{
@@ -82,7 +89,11 @@ class ChatList extends HTMLElement {
             const dateDiv = document.createElement('div')
             const userDiv = document.createElement('div')
             const image = document.createElement('img')
+            const imagetick = document.createElement('img')
             image.setAttribute('src', 'images/spongebob.jpg')
+            image.setAttribute('class', 'avatar')
+            imagetick.setAttribute('src', 'images/double-tick.png')
+            imagetick.setAttribute('class', 'tick')
             contactDiv.setAttribute('class', 'contact')
             userDiv.setAttribute('class', 'user')
             messageDiv.setAttribute('class', 'message')
@@ -93,7 +104,8 @@ class ChatList extends HTMLElement {
             dateDiv.innerHTML = lastMessage.date
             messageDiv.append(dateDiv)
             messageDiv.append(userDiv)
-            messageDiv.append(innerDiv)
+            messageDiv.append(imagetick)
+            messageDiv.append(innerDiv)   
             contactDiv.append(image)
             contactDiv.append(messageDiv)
             this.$list.appendChild(contactDiv)               

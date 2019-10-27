@@ -12,14 +12,14 @@ template.innerHTML = `
 
         .user {
             color: white;
-            font-size: 2vh;
+            font-size: 3vh;
             font-weight: bold;
             margin: 2%;
         }
 
         .time {
             color: #C660CD;
-            font-size: 1vh;
+            font-size: 2vh;
             margin-top: 1vh;
 
         }

@@ -25,12 +25,19 @@ template.innerHTML = `
             filter: blur(1px);
        }
 
+       .magnifying {
+            margin-left: auto;
+            height: 4vh;
+            width: 4vh;
+       }
+
     </style>
     <div class='hat'>
         <img class="menu" src="images/three-lines.png">
         <div class="text">
             Messenger
         </div>
+        <img class="magnifying" src="images/magnifying-glass.png">
     </div>
 `
 
