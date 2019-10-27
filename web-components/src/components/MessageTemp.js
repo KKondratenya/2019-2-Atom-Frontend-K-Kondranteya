@@ -88,8 +88,10 @@ class MessageTemp extends HTMLElement {
         messageDiv.setAttribute('class', 'message')
         dateDiv.setAttribute('class', 'date')
         messageDiv.innerHTML = value
-        dateDiv.innerHTML = `${date.getHours()}:${date.getMinutes()}`
-        message.date = `${date.getHours()}:${date.getMinutes()}`
+        const Hours = `0${date.getHours()}`.slice(-2)
+        const Minutes = `0${date.getMinutes()}`.slice(-2)
+        dateDiv.innerHTML = `${Hours}:${Minutes}`
+        message.date = `${Hours}:${Minutes}`
         message.sender = 'User'
         message.reciever = 'User'
         messageDiv.appendChild(dateDiv)
