@@ -4,13 +4,15 @@ template.innerHTML = `
         .message {
             position: relative;
             margin: 10px;
-            left: 10px;
             max-width: 40%;
+            padding: 1px;
             word-wrap:break-word;
             background-color: #F6E1F5;
-            padding: 5px;           
+            transition-property: left;
+            transition-duration: 1s;          
             border-radius:10px;
-            font-size: 20px;
+            font-size: 2vh;
+            line-height: 2vh;
             border: 3px;
             align-self:flex-end;
         }
@@ -32,7 +34,7 @@ template.innerHTML = `
         }
 
         .date {
-            font-size: 10px;
+            font-size: 1vh;
             font-style: oblique;
             text-align: right;
             margin: 2px;
@@ -53,7 +55,7 @@ class MessageTemp extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ['name', 'value']
+        return ['name', 'value', 'left']
     }
 
     connectedCallback() {
@@ -91,6 +93,7 @@ class MessageTemp extends HTMLElement {
         message.sender = 'User'
         message.reciever = 'User'
         messageDiv.appendChild(dateDiv)
+        messageDiv.setAttribute('style', 'left: 40%')
         this.$container.appendChild(messageDiv)
         if (this.$container.scrollHeight) {
             this.$container.scrollTop = this.$container.scrollHeight
@@ -98,6 +101,7 @@ class MessageTemp extends HTMLElement {
         this.messages.push(message)
         const json = JSON.stringify(this.messages)
         localStorage.setItem('message-container', json)
+        messageDiv.setAttribute('style', 'left: 0')
     }
 
     attributeChangedCallback(name, oldValue, newValue) {

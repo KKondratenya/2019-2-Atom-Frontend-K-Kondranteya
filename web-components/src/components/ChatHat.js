@@ -9,11 +9,26 @@ template.innerHTML = `
             align-items: center;
             color: white;
             font-weight: bolder;
-            font-size: 20px;
+            font-size: 3vh;
        }
+
+       .menu {
+            height: 3vh;
+            width: 3vh;
+       }
+
+       .text {
+            margin: 10px;
+       }
+
+       img:active {
+            filter: blur(1px);
+       }
+
     </style>
     <div class='hat'>
-        <div>
+        <img class="menu" src="images/three-lines.png">
+        <div class="text">
             Messenger
         </div>
     </div>

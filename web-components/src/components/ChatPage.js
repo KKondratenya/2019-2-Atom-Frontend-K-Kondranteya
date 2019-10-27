@@ -16,14 +16,52 @@ template.innerHTML = `
 
         button {
             border-radius: 100%;
-            width: 50px;
-            height: 50px;
+            width: 8vh;
+            height: 8vh;
             position: fixed;
-            left: 90%;
+            left: 80%;
             top: 80%;
             background-color: orange;   
             border-color: orange;
+            animation: none;
         }
+
+        button:hover{
+            animation: pulse 2s infinite;
+            cursor: pointer;
+            box-shadow: 0 0 0 rgba(204,169,44, 0.4);
+        }
+        img{
+            width: 4vh;
+            height: 4vh;
+        }
+
+            @-webkit-keyframes pulse {
+              0% {
+                -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+              }
+              70% {
+                  -webkit-box-shadow: 0 0 0 1vh rgba(204,169,44, 0);
+              }
+              100% {
+                  -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+              }
+            }
+            @keyframes pulse {
+              0% {
+                -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+                box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+              }
+              70% {
+                  -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+                  box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+              }
+              100% {
+                  -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+                  box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+              }
+            }
+
     </style>
     <from>
         <chat-hat>
@@ -31,8 +69,10 @@ template.innerHTML = `
         <chat-list>
         </chat-list>
         <button>
-        Create
+            <img src="images/pencil-edit-button.png">
         </button>
+        <span class='pulse'>
+        </span>
     </from>
 `
 

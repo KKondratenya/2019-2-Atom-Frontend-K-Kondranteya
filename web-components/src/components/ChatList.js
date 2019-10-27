@@ -4,7 +4,7 @@ template.innerHTML = `
         .message {
             position: relative;
             margin: 10px;
-            width: 98%;
+            width: 88%;
             word-wrap:break-word;
             padding: 5px;  
             border-bottom-style: solid;
@@ -17,10 +17,13 @@ template.innerHTML = `
         }
         .inner {
             color: #C3C3C3;
+            font-size: 3vh;
+            line-height: 3vh;
         }
 
         .result {
-            bottom: 20px;
+            bottom: 2vh;
+            line-height: 2vh;
             height: 88vh;
             margin: 5px;
             overflow-y: auto; 
@@ -28,7 +31,7 @@ template.innerHTML = `
         }
 
         .date {
-            font-size: 10px;
+            font-size: 2vh;
             font-style: oblique;
             float: right;
             margin: 2px;
@@ -36,16 +39,15 @@ template.innerHTML = `
 
         .user {
             font-weight: bolder;
-            font-size: 20px;
+            font-size: 4vh;
+            line-height: 4vh;
         }
 
         img {
-            width:5%;
-            height:5%;
-            border: 3px solid green; /* Параметры рамки */
+            width:15%;
+            height:15%;
             border-radius: 100%;
             object-fit: cover;
-            box-shadow: 0 0 7px #666; /* Параметры тени */
         }
 
         .contact{
