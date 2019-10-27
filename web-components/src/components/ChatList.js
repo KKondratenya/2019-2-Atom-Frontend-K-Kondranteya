@@ -4,7 +4,7 @@ template.innerHTML = `
         .message {
             position: relative;
             margin: 10px;
-            width: 88%;
+            width: 83%;
             word-wrap:break-word;
             padding: 5px;  
             border-bottom-style: solid;
@@ -19,6 +19,8 @@ template.innerHTML = `
             color: #C3C3C3;
             font-size: 3vh;
             line-height: 3vh;
+            max-width: 80%;
+            margin: 2px;
         }
 
         .result {
@@ -41,6 +43,8 @@ template.innerHTML = `
             font-weight: 550;
             font-size: 4vh;
             line-height: 4vh;
+            max-width: 70%;
+            margin: 2px;
         }
 
         .avatar {
@@ -115,7 +119,11 @@ class ChatList extends HTMLElement {
             const innerDiv = document.createElement('div')
             const userDiv = document.createElement('div')
             const image = document.createElement('img')
+            const imagetick = document.createElement('img')
             image.setAttribute('src', 'images/spongebob.jpg')
+            image.setAttribute('class', 'avatar')
+            imagetick.setAttribute('src', 'images/double-tick.png')
+            imagetick.setAttribute('class', 'tick')
             contactDiv.setAttribute('class', 'contact')
             userDiv.setAttribute('class', 'user')
             messageDiv.setAttribute('class', 'message')
@@ -123,6 +131,7 @@ class ChatList extends HTMLElement {
             userDiv.innerHTML = 'User'
             innerDiv.innerHTML = `Начните диалог с пользователем User прямо сейчас`
             messageDiv.append(userDiv)
+            messageDiv.append(imagetick)
             messageDiv.append(innerDiv)
             contactDiv.append(image)
             contactDiv.append(messageDiv)
