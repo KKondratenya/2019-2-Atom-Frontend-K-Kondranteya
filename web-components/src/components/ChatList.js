@@ -15,6 +15,7 @@ template.innerHTML = `
         .contact:hover {
             background-color: #F5F7FA;
         }
+        
         .inner {
             color: #C3C3C3;
             font-size: 3vh;
