@@ -4,8 +4,6 @@ template.innerHTML = `
     </style>
     <chat-page>
     </chat-page>
-
-
 `
 
 class MessagerPage extends HTMLElement {

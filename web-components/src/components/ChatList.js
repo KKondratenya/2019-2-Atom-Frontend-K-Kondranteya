@@ -4,7 +4,7 @@ template.innerHTML = `
         .message {
             position: relative;
             margin: 10px;
-            width: 98%;
+            width: 83%;
             word-wrap:break-word;
             padding: 5px;  
             border-bottom-style: solid;
@@ -15,12 +15,18 @@ template.innerHTML = `
         .contact:hover {
             background-color: #F5F7FA;
         }
+        
         .inner {
             color: #C3C3C3;
+            font-size: 3vh;
+            line-height: 3vh;
+            max-width: 80%;
+            margin: 2px;
         }
 
         .result {
-            bottom: 20px;
+            bottom: 2vh;
+            line-height: 2vh;
             height: 88vh;
             margin: 5px;
             overflow-y: auto; 
@@ -28,24 +34,32 @@ template.innerHTML = `
         }
 
         .date {
-            font-size: 10px;
+            font-size: 2vh;
             font-style: oblique;
             float: right;
             margin: 2px;
         }
 
         .user {
-            font-weight: bolder;
-            font-size: 20px;
+            font-weight: 550;
+            font-size: 4vh;
+            line-height: 4vh;
+            max-width: 70%;
+            margin: 2px;
         }
 
-        img {
-            width:5%;
-            height:5%;
-            border: 3px solid green; /* Параметры рамки */
+        .avatar {
+            width:15%;
+            height:15%;
             border-radius: 100%;
             object-fit: cover;
-            box-shadow: 0 0 7px #666; /* Параметры тени */
+        }
+
+        .tick {
+            height: 3vh;
+            width: 3vh; 
+            float: right;
+            
         }
 
         .contact{
@@ -80,7 +94,11 @@ class ChatList extends HTMLElement {
             const dateDiv = document.createElement('div')
             const userDiv = document.createElement('div')
             const image = document.createElement('img')
+            const imagetick = document.createElement('img')
             image.setAttribute('src', 'images/spongebob.jpg')
+            image.setAttribute('class', 'avatar')
+            imagetick.setAttribute('src', 'images/double-tick.png')
+            imagetick.setAttribute('class', 'tick')
             contactDiv.setAttribute('class', 'contact')
             userDiv.setAttribute('class', 'user')
             messageDiv.setAttribute('class', 'message')
@@ -91,7 +109,8 @@ class ChatList extends HTMLElement {
             dateDiv.innerHTML = lastMessage.date
             messageDiv.append(dateDiv)
             messageDiv.append(userDiv)
-            messageDiv.append(innerDiv)
+            messageDiv.append(imagetick)
+            messageDiv.append(innerDiv)   
             contactDiv.append(image)
             contactDiv.append(messageDiv)
             this.$list.appendChild(contactDiv)               
@@ -101,7 +120,11 @@ class ChatList extends HTMLElement {
             const innerDiv = document.createElement('div')
             const userDiv = document.createElement('div')
             const image = document.createElement('img')
+            const imagetick = document.createElement('img')
             image.setAttribute('src', 'images/spongebob.jpg')
+            image.setAttribute('class', 'avatar')
+            imagetick.setAttribute('src', 'images/double-tick.png')
+            imagetick.setAttribute('class', 'tick')
             contactDiv.setAttribute('class', 'contact')
             userDiv.setAttribute('class', 'user')
             messageDiv.setAttribute('class', 'message')
@@ -109,6 +132,7 @@ class ChatList extends HTMLElement {
             userDiv.innerHTML = 'User'
             innerDiv.innerHTML = `Начните диалог с пользователем User прямо сейчас`
             messageDiv.append(userDiv)
+            messageDiv.append(imagetick)
             messageDiv.append(innerDiv)
             contactDiv.append(image)
             contactDiv.append(messageDiv)
