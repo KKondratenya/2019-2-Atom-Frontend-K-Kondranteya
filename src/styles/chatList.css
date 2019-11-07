@@ -1,0 +1,65 @@
+.messagelist {
+            position: relative;
+            margin: 10px;
+            width: 83%;
+            word-wrap:break-word;
+            padding: 5px;  
+            border-bottom-style: solid;
+            border-color: #A61AB4;
+            border-width: thin;
+        }
+
+        .contact:hover {
+            background-color: #F5F7FA;
+        }
+        
+        .innerchat {
+            color: #C3C3C3;
+            font-size: 3vh;
+            line-height: 3vh;
+            max-width: 70vw;
+            margin: 2px;
+        }
+
+        .resultchat {
+            bottom: 2vh;
+            line-height: 2vh;
+            height: 88vh;
+            margin: 5px;
+            overflow-y: auto; 
+            overflow-x:hidden;
+        }
+
+        .datechat {
+            font-size: 2vh;
+            font-style: oblique;
+            float: right;
+            margin: 2px;
+        }
+
+        .userchat {
+            font-weight: 550;
+            font-size: 4vh;
+            line-height: 4vh;
+            max-width: 70%;
+            margin: 2px;
+        }
+
+        .avatarchat {
+            width:15%;
+            height:15%;
+            border-radius: 100%;
+            object-fit: cover;
+        }
+
+        .tick {
+            height: 3vh;
+            width: 3vh; 
+            float: right;
+            
+        }
+
+         .contact{
+            display: flex;
+            margin: 5px;
+        }

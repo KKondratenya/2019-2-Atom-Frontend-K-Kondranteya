@@ -1,0 +1,25 @@
+      .chathat {
+            height: 8vh;
+            background-color: #8E24AA;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            color: white;
+            font-weight: bolder;
+            font-size: 3vh;
+       }
+
+       .chatmenu {
+            height: 3vh;
+            width: 3vh;
+       }
+
+       .text {
+            margin: 10px;
+       }
+
+       .chatmagnifying {
+            margin-left: auto;
+            height: 4vh;
+            width: 4vh;
+       }
