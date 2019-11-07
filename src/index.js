@@ -2,12 +2,12 @@ import React from 'react';
 import { render } from 'react-dom';
 import './styles/globalStyles.css';
 import * as serviceWorker from './utils/serviceWorker';
-import ShoppingList from './components/Messenger.js'
+import Messenger from './components/Messenger.js'
 
 render(
-	<ShoppingList>
+	<Messenger>
 		hello	
-	</ShoppingList>,
+	</Messenger>,
 	document.getElementById('root'),
 );
 // If you want your app to work offline and load faster, you can change

@@ -5,7 +5,8 @@ import FormInput from './FormInput.js'
 import List from './MessageContainer.js'
 import ChatList from './ChatList'
 import pencil from '../assets/images/pencil-edit-button.png'
-
+/* eslint react/destructuring-assignment: 0 */
+/* eslint react/no-access-state-in-setstate: 0 */
 class Messenger extends React.Component {
 	constructor(props) {
 		super(props);
@@ -42,7 +43,7 @@ class Messenger extends React.Component {
 			message.inner = value
 			message.date = `${Hours}:${Minutes}`
 			message.user = 'user'
-			const changeState = this.state.name
+			const changeState = [...this.state.name]
 			changeState[this.state.contact_index].messages.push(message)
 			if (this.state.contact_index !== 0) {
 				const buf = this.state.name[this.state.contact_index]
@@ -60,12 +61,10 @@ class Messenger extends React.Component {
 		}
 
 		updateDisplay = (index) => {
-			const displayChat = this.state.display_contact
-			const displayContact = this.state.display_chat
-			this.setState({
-				display_chat:displayChat,
-				display_contact:displayContact,
-			})
+			this.setState(prevState=>({
+				display_chat:prevState.display_contact,
+				display_contact:prevState.display_chat,
+			}))
 			if (index !== -1) {
 				this.setState({
 					contact_index: index
