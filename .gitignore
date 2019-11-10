@@ -107,6 +107,7 @@ jspm_packages/
 typings/
 
 web-components/build
+build
 # Optional npm cache directory
 .npm
 
