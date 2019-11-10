@@ -1,0 +1,39 @@
+.result {
+	bottom: 20px;
+	height: 85vh;
+	display: flex;
+	flex-direction: column;
+	margin: 5px;
+	flex-wrap: nowrap;
+	overflow-y: auto;
+	overflow-x: hidden;
+	flex-flow: column nowrap;
+}
+
+.result > :first-child {
+	margin-top: auto !important;
+}
+
+.date {
+	font-size: 1vh;
+	font-style: oblique;
+	text-align: right;
+	margin: 2px;
+}
+
+.message {
+	white-space: pre-wrap;
+	position: relative;
+	margin: 10px;
+	max-width: 40%;
+	padding: 1px;
+	word-break: break-all;
+	background-color: #f6e1f5;
+	transition-property: left;
+	transition-duration: 1s;
+	border-radius: 10px;
+	font-size: 2vh;
+	line-height: 2vh;
+	border: 3px;
+	align-self: flex-end;
+}

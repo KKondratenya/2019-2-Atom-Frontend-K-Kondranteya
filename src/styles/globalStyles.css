@@ -16,3 +16,29 @@ code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 		monospace;
 }
+
+.shopping-list {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	overflow-x: hidden;
+}
+
+.button {
+	border-radius: 100%;
+	width: 8vh;
+	height: 8vh;
+	position: fixed;
+	left: 80%;
+	top: 80%;
+	background-color: orange;
+	border-color: orange;
+	animation: pulse 2s infinite;
+}
+
+.button:hover {
+	animation: none;
+	cursor: pointer;
+	box-shadow: 0 0 0 rgba(204, 169, 44, 0.4);
+}
