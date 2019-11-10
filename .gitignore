@@ -106,8 +106,6 @@ jspm_packages/
 # Typescript v1 declaration files
 typings/
 
-web-components/build
-build
 # Optional npm cache directory
 .npm
 
@@ -132,6 +130,7 @@ bower_components/
 *.log
 
 dist/
+build/
 
 #### eslint ####
 # These rules are required to lint .eslintrc.js and friends.

@@ -5,6 +5,7 @@ import Counter from '../components/Counter';
 import ActionTypes from '../constants/ActionTypes';
 import { incrementIfOdd } from '../actions/counter';
 
+/* eslint react/prop-types:0 */
 export class CounterContainer extends React.Component {
 	increment = () => {
 		const { dispatch } = this.props;
@@ -35,13 +36,13 @@ export class CounterContainer extends React.Component {
 }
 
 CounterContainer.propTypes = {
-	dispatch: PropTypes.func.isRequired,
 	counter: PropTypes.number.isRequired,
 };
 
 function mapStateToProps(state) {
 	return {
 		counter: state.counter,
+		dispatch: PropTypes.func.isRequired,
 	};
 }
 
