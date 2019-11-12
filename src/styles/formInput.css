@@ -1,0 +1,12 @@
+textarea {
+	width: 100vw;
+	height: 5vh;
+	overflow-y: hidden;
+	font-size: 2vh;
+	line-height: 2vh;
+	resize: none;
+}
+
+input[type='submit'] {
+	visibility: collapse;
+}
