@@ -10,7 +10,7 @@ import pencil from '../assets/images/pencil-edit-button.png';
 class Messenger extends React.Component {
 	constructor(props) {
 		super(props);
-		const box = localStorage.getItem('message-container');
+		const box = localStorage.getItem('box-container');
 		let messageBox = null;
 		if (box) {
 			messageBox = JSON.parse(box);
@@ -57,7 +57,7 @@ class Messenger extends React.Component {
 			};
 		});
 		const json = JSON.stringify(this.state.name);
-		localStorage.setItem('message-container', json);
+		localStorage.setItem('box-container', json);
 	};
 
 	updateDisplay = (index) => {
@@ -78,12 +78,12 @@ class Messenger extends React.Component {
 		contact.messages = [];
 		this.setState((prevState) => ({ name: [...prevState.name, contact] }));
 		const json = JSON.stringify(this.state.name);
-		localStorage.setItem('message-container', json);
+		localStorage.setItem('box-container', json);
 	};
 
 	render() {
 		return (
-			<div className="shopping-list">
+			<div className="messenger">
 				<div className="contact-list" style={this.state.display_contact}>
 					<ChatHead />
 					<ChatList name={this.state.name} update={this.updateDisplay} />

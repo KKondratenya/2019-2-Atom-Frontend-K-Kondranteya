@@ -17,7 +17,7 @@ code {
 		monospace;
 }
 
-.shopping-list {
+.messenger {
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
