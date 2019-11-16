@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import avatar from '../assets/images/spongebob.jpg';
 import '../styles/chatList.css';
 /* eslint react/prop-types: 0 */
@@ -10,14 +11,20 @@ function ListItem({ value, lastmessage, update, index }) {
 		message.date = '';
 	}
 	return (
-		<div className="contact" onClick={() => update(index)} role="presentation">
-			<img className="avatarchat" src={avatar} alt="avatar" />
-			<div className="messagelist">
-				<div className="datechat">{message.date}</div>
-				<div className="userchat">{value}</div>
-				<div className="innerchat">{message.inner}</div>
+		<Link to="/chat" style={{ textDecoration: 'none' }}>
+			<div
+				className="contact"
+				onClick={() => update(index)}
+				role="presentation"
+			>
+				<img className="avatarchat" src={avatar} alt="avatar" />
+				<div className="messagelist">
+					<div className="datechat">{message.date}</div>
+					<div className="userchat">{value}</div>
+					<div className="innerchat">{message.inner}</div>
+				</div>
 			</div>
-		</div>
+		</Link>
 	);
 }
 
