@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ChatHead from './ChatHead.js';
 import ProfileHead from './ProfileHead.js';
 import ProfileEdit from './ProfileEdit.js';
@@ -90,33 +90,37 @@ class Messenger extends React.Component {
 		return (
 			<Router>
 				<div className="messenger">
-					<Route exact path="/">
-						<div className="contact-list">
-							<ChatHead />
-							<ChatList name={this.state.name} update={this.updateDisplay} />
-							<div
-								className="button"
-								onClick={this.addContact}
-								role="presentation"
-							>
-								<img src={pencil} alt="create_contact" className="pencil" />
+					<Switch>
+						<Route exact path="/">
+							<div className="contact-list">
+								<ChatHead />
+								<ChatList name={this.state.name} update={this.updateDisplay} />
+								<div
+									className="button"
+									onClick={this.addContact}
+									role="presentation"
+								>
+									<img src={pencil} alt="create_contact" className="pencil" />
+								</div>
 							</div>
-						</div>
-					</Route>
-					<Route exact path="/chat">
-						<div className="chat">
-							<MessageHead
-								update={this.updateDisplay}
-								nick={this.state.name[this.state.contact_index].user}
-							/>
-							<List name={this.state.name[this.state.contact_index].messages} />
-							<FormInput value="Hi" updateValue={this.updateValue} />
-						</div>
-					</Route>
-					<Route exact path="/profile">
-						<ProfileHead />
-						<ProfileEdit />
-					</Route>
+						</Route>
+						<Route exact path="/chat">
+							<div className="chat">
+								<MessageHead
+									update={this.updateDisplay}
+									nick={this.state.name[this.state.contact_index].user}
+								/>
+								<List
+									name={this.state.name[this.state.contact_index].messages}
+								/>
+								<FormInput value="Hi" updateValue={this.updateValue} />
+							</div>
+						</Route>
+						<Route exact path="/profile">
+							<ProfileHead />
+							<ProfileEdit />
+						</Route>
+					</Switch>
 				</div>
 			</Router>
 		);
