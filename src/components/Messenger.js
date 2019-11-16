@@ -91,20 +91,7 @@ class Messenger extends React.Component {
 			<Router>
 				<div className="messenger">
 					<Switch>
-						<Route exact path="/">
-							<div className="contact-list">
-								<ChatHead />
-								<ChatList name={this.state.name} update={this.updateDisplay} />
-								<div
-									className="button"
-									onClick={this.addContact}
-									role="presentation"
-								>
-									<img src={pencil} alt="create_contact" className="pencil" />
-								</div>
-							</div>
-						</Route>
-						<Route exact path="/chat">
+						<Route path="/chat">
 							<div className="chat">
 								<MessageHead
 									update={this.updateDisplay}
@@ -116,9 +103,22 @@ class Messenger extends React.Component {
 								<FormInput value="Hi" updateValue={this.updateValue} />
 							</div>
 						</Route>
-						<Route exact path="/profile">
+						<Route path="/profile">
 							<ProfileHead />
 							<ProfileEdit />
+						</Route>
+						<Route path="/">
+							<div className="contact-list">
+								<ChatHead />
+								<ChatList name={this.state.name} update={this.updateDisplay} />
+								<div
+									className="button"
+									onClick={this.addContact}
+									role="presentation"
+								>
+									<img src={pencil} alt="create_contact" className="pencil" />
+								</div>
+							</div>
 						</Route>
 					</Switch>
 				</div>
