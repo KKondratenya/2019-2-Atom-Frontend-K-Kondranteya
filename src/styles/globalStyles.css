@@ -37,8 +37,26 @@ code {
 	animation: pulse 2s infinite;
 }
 
+.pencil {
+	width: 4vh;
+	height: 4vh;
+	margin: 2vh;
+}
+
 .button:hover {
 	animation: none;
 	cursor: pointer;
 	box-shadow: 0 0 0 rgba(204, 169, 44, 0.4);
+}
+
+@keyframes pulse {
+	0% {
+		box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
+	}
+	70% {
+		box-shadow: 0 0 0 2vh rgba(204, 169, 44, 0);
+	}
+	100% {
+		box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+	}
 }

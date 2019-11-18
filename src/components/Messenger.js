@@ -1,5 +1,8 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ChatHead from './ChatHead.js';
+import ProfileHead from './ProfileHead.js';
+import ProfileEdit from './ProfileEdit.js';
 import MessageHead from './MessageHead.js';
 import FormInput from './FormInput.js';
 import List from './MessageContainer.js';
@@ -51,13 +54,13 @@ class Messenger extends React.Component {
 				changeState.unshift(buf);
 				index = 0;
 			}
+			const json = JSON.stringify(changeState);
+			localStorage.setItem('box-container', json);
 			return {
 				name: changeState,
 				contact_index: index,
 			};
 		});
-		const json = JSON.stringify(this.state.name);
-		localStorage.setItem('box-container', json);
 	};
 
 	updateDisplay = (index) => {
@@ -76,30 +79,50 @@ class Messenger extends React.Component {
 		const contact = {};
 		contact.user = `User ${this.state.name.length}`;
 		contact.messages = [];
-		this.setState((prevState) => ({ name: [...prevState.name, contact] }));
-		const json = JSON.stringify(this.state.name);
-		localStorage.setItem('box-container', json);
+		this.setState(function(prevState) {
+			const json = JSON.stringify([...prevState.name, contact]);
+			localStorage.setItem('box-container', json);
+			return { name: [...prevState.name, contact] };
+		});
 	};
 
 	render() {
 		return (
-			<div className="messenger">
-				<div className="contact-list" style={this.state.display_contact}>
-					<ChatHead />
-					<ChatList name={this.state.name} update={this.updateDisplay} />
-					<div className="button" onClick={this.addContact} role="presentation">
-						<img src={pencil} alt="create_contact" />
-					</div>
+			<Router>
+				<div className="messenger">
+					<Switch>
+						<Route path="/chat">
+							<div className="chat">
+								<MessageHead
+									update={this.updateDisplay}
+									nick={this.state.name[this.state.contact_index].user}
+								/>
+								<List
+									name={this.state.name[this.state.contact_index].messages}
+								/>
+								<FormInput value="Hi" updateValue={this.updateValue} />
+							</div>
+						</Route>
+						<Route path="/profile">
+							<ProfileHead />
+							<ProfileEdit />
+						</Route>
+						<Route path="/">
+							<div className="contact-list">
+								<ChatHead />
+								<ChatList name={this.state.name} update={this.updateDisplay} />
+								<div
+									className="button"
+									onClick={this.addContact}
+									role="presentation"
+								>
+									<img src={pencil} alt="create_contact" className="pencil" />
+								</div>
+							</div>
+						</Route>
+					</Switch>
 				</div>
-				<div className="chat" style={this.state.display_chat}>
-					<MessageHead
-						update={this.updateDisplay}
-						nick={this.state.name[this.state.contact_index].user}
-					/>
-					<List name={this.state.name[this.state.contact_index].messages} />
-					<FormInput value="Hi" updateValue={this.updateValue} />
-				</div>
-			</div>
+			</Router>
 		);
 	}
 }

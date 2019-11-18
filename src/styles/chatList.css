@@ -61,4 +61,5 @@
 .contact {
 	display: flex;
 	margin: 5px;
+	text-decoration: none;
 }

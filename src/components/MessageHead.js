@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/messageHeadStyles.css';
+import { Link } from 'react-router-dom';
 import glass from '../assets/images/magnifying-glass.png';
 import arrow from '../assets/images/left-arrow.png';
 import avatar from '../assets/images/spongebob.jpg';
@@ -9,13 +10,15 @@ import menu from '../assets/images/menu.png';
 function MessageHead({ update, nick }) {
 	return (
 		<div className="messagehat">
-			<img
-				className="arrow"
-				src={arrow}
-				onClick={() => update(-1)}
-				alt="arrow"
-				role="presentation"
-			/>
+			<Link to="/">
+				<img
+					className="arrow"
+					src={arrow}
+					onClick={() => update(-1)}
+					alt="arrow"
+					role="presentation"
+				/>
+			</Link>
 			<img className="avatar" src={avatar} alt="avatar" />
 			<div className="user">
 				{nick}

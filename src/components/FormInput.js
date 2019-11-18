@@ -20,6 +20,7 @@ function FormInput({ updateValue }) {
 			type="text"
 			placeholder="Введите сообщение"
 			onKeyPress={(event) => KeyEvent(event)}
+			className="inputmessage"
 		/>
 	);
 }

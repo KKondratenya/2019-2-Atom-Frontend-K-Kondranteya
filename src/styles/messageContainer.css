@@ -36,4 +36,15 @@
 	line-height: 2vh;
 	border: 3px;
 	align-self: flex-end;
+	animation: scroll 1.5s;
+}
+
+@keyframes scroll {
+	0% {
+		left: 40%;
+	}
+
+	75% {
+		left: 0;
+	}
 }
