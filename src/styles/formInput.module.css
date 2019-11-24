@@ -1,12 +1,25 @@
 .inputmessage {
-	width: 100vw;
+	width: 96vw;
 	height: 5vh;
 	overflow-y: hidden;
 	font-size: 2vh;
 	line-height: 2vh;
 	resize: none;
+	border: none;
 }
 
 input[type='submit'] {
 	visibility: collapse;
+}
+
+.input {
+	display: flex;
+}
+
+.clip {
+	width: 4vw;
+}
+
+.clip:hover {
+	background-color: #edeef0;
 }

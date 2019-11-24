@@ -8,6 +8,7 @@
 	overflow-y: auto;
 	overflow-x: hidden;
 	flex-flow: column nowrap;
+	background-color: #f8f8f8;
 }
 
 .result > :first-child {
@@ -36,15 +37,20 @@
 	line-height: 2vh;
 	border: 3px;
 	align-self: flex-end;
-	animation: scroll 1.5s;
 }
 
-@keyframes scroll {
-	0% {
-		left: 40%;
-	}
+.drag {
+	position: absolute;
+	text-align: center;
+	top: 50%;
+	width: 100%;
+	font-size: 20px;
+}
 
-	75% {
-		left: 0;
-	}
+.result-drag {
+	background-color: #edeef0;
+	height: 75vh;
+	bottom: 20px;
+	overflow-y: auto;
+	overflow-x: hidden;
 }

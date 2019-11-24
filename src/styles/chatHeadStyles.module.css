@@ -1,4 +1,4 @@
-.chathat {
+.hat {
 	height: 8vh;
 	background-color: #8e24aa;
 	display: flex;
@@ -9,7 +9,7 @@
 	font-size: 3vh;
 }
 
-.chatmenu {
+.menu {
 	height: 3vh;
 	width: 3vh;
 }
@@ -18,7 +18,7 @@
 	margin: 10px;
 }
 
-.chatmagnifying {
+.magnifying {
 	margin-left: auto;
 	height: 4vh;
 	width: 4vh;

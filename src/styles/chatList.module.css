@@ -13,7 +13,7 @@
 	background-color: #f5f7fa;
 }
 
-.innerchat {
+.inner {
 	color: #c3c3c3;
 	font-size: 3vh;
 	line-height: 3vh;
@@ -21,7 +21,7 @@
 	margin: 2px;
 }
 
-.resultchat {
+.result {
 	bottom: 2vh;
 	line-height: 2vh;
 	height: 88vh;
@@ -30,14 +30,14 @@
 	overflow-x: hidden;
 }
 
-.datechat {
+.date {
 	font-size: 2vh;
 	font-style: oblique;
 	float: right;
 	margin: 2px;
 }
 
-.userchat {
+.user {
 	font-weight: 550;
 	font-size: 4vh;
 	line-height: 4vh;
@@ -45,7 +45,7 @@
 	margin: 2px;
 }
 
-.avatarchat {
+.avatar {
 	width: 15%;
 	height: 15%;
 	border-radius: 100%;
@@ -61,5 +61,4 @@
 .contact {
 	display: flex;
 	margin: 5px;
-	text-decoration: none;
 }
