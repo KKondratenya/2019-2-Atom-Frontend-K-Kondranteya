@@ -58,7 +58,7 @@ function List({ name, files, updateFiles }) {
 	const handleFiles = (event) => {
 		event.preventDefault();
 		const data = event.dataTransfer;
-		const { userFiles } = data;
+		const userFiles = data.files;
 		for (let i = 0; i < userFiles.length; i += 1) {
 			const file = userFiles[i];
 			if (file.type.startsWith('image/')) {
