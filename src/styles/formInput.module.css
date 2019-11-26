@@ -1,5 +1,5 @@
 .inputmessage {
-	width: 96vw;
+	width: 91vw;
 	height: 5vh;
 	overflow-y: hidden;
 	font-size: 2vh;
@@ -17,7 +17,8 @@ input[type='submit'] {
 }
 
 .clip {
-	width: 4vw;
+	width: 5vh;
+	height: 5vh;
 }
 
 .clip:hover {

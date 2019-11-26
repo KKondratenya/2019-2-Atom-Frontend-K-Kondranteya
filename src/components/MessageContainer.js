@@ -17,7 +17,6 @@ function ListItem({ value }) {
 				<img
 					src={value.inner}
 					alt="message"
-					height="100px"
 					onLoad={() => window.URL.revokeObjectURL(value.src)}
 				/>
 				<div className={styles.date}>{value.date}</div>
@@ -49,6 +48,7 @@ function ListItem({ value }) {
 
 function List({ name, files, updateFiles }) {
 	const messageEndRef = useRef(null);
+
 	const [dragEvent, setDrag] = useState(true);
 
 	const scrollToBottom = () => {

@@ -33,6 +33,7 @@ class Messenger extends React.Component {
 		this.updateValue = this.updateValue.bind(this);
 		this.updateDisplay = this.updateDisplay.bind(this);
 		this.addContact = this.addContact.bind(this);
+		this.updateFiles = this.updateFiles.bind(this);
 	}
 
 	updateValue = (type, value) => {
@@ -84,10 +85,6 @@ class Messenger extends React.Component {
 	};
 
 	updateDisplay = (index) => {
-		this.setState((prevState) => ({
-			display_chat: prevState.display_contact,
-			display_contact: prevState.display_chat,
-		}));
 		if (index !== -1) {
 			this.setState({
 				contact_index: index,
