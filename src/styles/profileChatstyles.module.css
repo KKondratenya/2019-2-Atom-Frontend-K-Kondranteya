@@ -1,0 +1,38 @@
+.profile-chat {
+	display: flex;
+	flex-grow: 1;
+	flex-direction: column;
+	margin: 5px;
+	flex-wrap: wrap;
+	overflow-y: auto;
+	overflow-x: hidden;
+	flex-flow: column nowrap;
+	pointer-events: none;
+}
+
+.profile {
+	margin-top: 20px;
+	font-size: 20px;
+	flex-grow: 1;
+	word-wrap: break-word;
+	padding: 5px;
+	border-bottom-style: solid;
+	border-color: #a61ab4;
+	border-width: thin;
+}
+
+.options {
+	color: red;
+	font-size: 20px;
+	text-align: center;
+	padding: 20px;
+}
+
+.options:hover {
+	background-color: #f5f7fa;
+}
+
+.line {
+	background-color: #f0f0f0;
+	height: 20px;
+}

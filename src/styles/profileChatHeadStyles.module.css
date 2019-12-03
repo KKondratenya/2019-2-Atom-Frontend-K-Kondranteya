@@ -1,0 +1,36 @@
+.hat {
+	height: 140px;
+	display: flex;
+	background-color: #8e24aa;
+	color: white;
+}
+
+.avatar {
+	height: 100px;
+	width: 100px;
+	border-radius: 100%;
+	object-fit: cover;
+	align-self: flex-end;
+	margin-left: auto;
+	margin-bottom: 10px;
+}
+
+.title {
+	font-size: 30px;
+	word-wrap: break-word;
+	align-self: center;
+	max-width: 50vw;
+}
+
+.plus {
+	height: 40px;
+	width: 40px;
+	margin-left: auto;
+	margin-top: 10px;
+}
+
+.arrow {
+	height: 40px;
+	width: 40px;
+	margin-top: 10px;
+}

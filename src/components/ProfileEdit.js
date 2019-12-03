@@ -2,7 +2,7 @@ import React from 'react';
 import avatar from '../assets/images/spongebob.jpg';
 import styles from '../styles/profileEdit.module.css';
 /* eslint react/prop-types: 0 */
-function ProfileEdit({ updateProfile }) {
+function ProfileEdit({ user, updateProfile }) {
 	return (
 		<div className={styles.profile}>
 			<img src={avatar} className={styles.avatar} alt="avatar" />

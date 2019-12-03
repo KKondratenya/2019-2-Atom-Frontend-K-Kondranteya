@@ -6,6 +6,10 @@ import ProfileEdit from './ProfileEdit.js';
 import MessageHead from './MessageHead.js';
 import FormInput from './FormInput.js';
 import List from './MessageContainer.js';
+import ModalWindow from './ModalWindow.js';
+import ProfileGroup from './ProfileGroup.js';
+import ProfileGroupHead from './ProfileGroupHead.js';
+import ModalWindowAuth from './ModalWindowAuth.js';
 import ChatList from './ChatList';
 import pencil from '../assets/images/pencil-edit-button.png';
 
@@ -13,63 +17,28 @@ import pencil from '../assets/images/pencil-edit-button.png';
 class Messenger extends React.Component {
 	constructor(props) {
 		super(props);
-		const box = localStorage.getItem('box-container');
-		let messageBox = null;
-		if (box) {
-			messageBox = JSON.parse(box);
-		} else {
-			messageBox = [
-				{
-					user: 'User',
-					messages: [],
-				},
-			];
-		}
 		this.state = {
-			name: messageBox,
-			contact_index: 0,
+			user: 'User',
+			contact_index: 14,
+			contact_title: '',
+			is_group_chat: false,
 			files: [],
+			modal_window_user: true,
+			modal_window_add_contact: false,
+			modal_window_add: false,
+			modal_window_create_chat: false,
 		};
-		this.updateValue = this.updateValue.bind(this);
 		this.updateDisplay = this.updateDisplay.bind(this);
 		this.addContact = this.addContact.bind(this);
 		this.updateFiles = this.updateFiles.bind(this);
 	}
-
-	updateValue = (type, value) => {
-		const message = {};
-		const date = new Date();
-		const Hours = `0${date.getHours()}`.slice(-2);
-		const Minutes = `0${date.getMinutes()}`.slice(-2);
-		message.inner = value;
-		message.date = `${Hours}:${Minutes}`;
-		message.user = 'user';
-		message.type = type;
-		this.setState(function(prevState) {
-			const changeState = [...prevState.name];
-			changeState[prevState.contact_index].messages.push(message);
-			let index = prevState.contact_index;
-			if (prevState.contact_index !== 0) {
-				const buf = prevState.name[prevState.contact_index];
-				changeState.splice(prevState.contact_index, 1);
-				changeState.unshift(buf);
-				index = 0;
-			}
-			const json = JSON.stringify(changeState);
-			localStorage.setItem('box-container', json);
-			return {
-				name: changeState,
-				contact_index: index,
-			};
-		});
-	};
 
 	updateFiles = (type, src) => {
 		const message = {};
 		const date = new Date();
 		const Hours = `0${date.getHours()}`.slice(-2);
 		const Minutes = `0${date.getMinutes()}`.slice(-2);
-		message.inner = src;
+		message.content = src;
 		message.date = `${Hours}:${Minutes}`;
 		message.user = 'user';
 		message.type = type;
@@ -84,26 +53,95 @@ class Messenger extends React.Component {
 		});
 	};
 
-	updateDisplay = (index) => {
-		if (index !== -1) {
+	updateDisplay = (id, contactTitle, isGroupChat) => {
+		console.log(contactTitle);
+		if (id !== -1) {
 			this.setState({
-				contact_index: index,
+				contact_index: id,
+				contact_title: contactTitle,
+				is_group_chat: isGroupChat,
 			});
 		}
 	};
 
+	leaveChat = (id) => {
+		fetch(
+			`https://localhost:8000/chats/leave_chat?id=${id}&user=${this.state.user}`,
+		).then((res) => res.json());
+	};
+
 	addContact = () => {
-		const contact = {};
-		contact.user = `User ${this.state.name.length}`;
-		contact.messages = [];
-		this.setState(function(prevState) {
-			const json = JSON.stringify([...prevState.name, contact]);
-			localStorage.setItem('box-container', json);
-			return { name: [...prevState.name, contact] };
+		this.setState({
+			modal_window_add_contact: true,
 		});
 	};
 
+	addUser = () => {
+		this.setState({
+			modal_window_add: true,
+		});
+	};
+
+	addChat = () => {
+		this.setState({
+			modal_window_create_chat: true,
+		});
+	};
+
+	contactCreate = (value) => {
+		fetch(
+			`https://localhost:8000/chats/contact?contact=${value}&user=${this.state.user}`,
+		)
+			.then((resp) => resp.json())
+			.then((data) => console.log(data));
+		this.setState({
+			modal_window_add_contact: false,
+		});
+	};
+
+	updateUserName = (value) => {
+		this.setState({
+			user: value,
+			modal_window_user: false,
+		});
+		fetch(`https://localhost:8000/profile/create/${value}`).then((res) =>
+			res.json(),
+		);
+	};
+
+	createChat = (value) => {
+		this.setState({
+			modal_window_create_chat: false,
+		});
+		fetch(
+			`https://localhost:8000/chats/create_chat_front?user=${this.state.user}&title=${value}`,
+			{ method: 'POST' },
+		).then((res) => res.json());
+	};
+
+	addUserToChat = (value) => {
+		this.setState({
+			modal_window_add: false,
+		});
+		fetch(
+			`https://127.0.0.1:8000/chats/add_user_to_chat?id=${this.state.contact_index}&user=${value}`,
+			{ method: 'POST' },
+		).then((res) => res.json());
+	};
+
 	render() {
+		const modalWindowAddChat = this.state.modal_window_create_chat ? (
+			<ModalWindowAuth updateUserName={this.createChat} />
+		) : null;
+		const modalWindowAdd = this.state.modal_window_add ? (
+			<ModalWindow update={this.addUserToChat} />
+		) : null;
+		const modalAuth = this.state.modal_window_user ? (
+			<ModalWindowAuth updateUserName={this.updateUserName} />
+		) : null;
+		const modalAddContact = this.state.modal_window_add_contact ? (
+			<ModalWindow update={this.contactCreate} />
+		) : null;
 		return (
 			<Router>
 				<div className="messenger">
@@ -111,28 +149,49 @@ class Messenger extends React.Component {
 						<Route path="/chat">
 							<div className="chat">
 								<MessageHead
-									update={this.updateDisplay}
-									nick={this.state.name[this.state.contact_index].user}
+									updateDisplay={this.updateDisplay}
+									contactTitle={this.state.contact_title}
+									isGroupChat={this.state.is_group_chat}
 								/>
 								<List
-									name={this.state.name[this.state.contact_index].messages}
+									id={this.state.contact_index}
 									files={this.state.files}
 									updateFiles={this.updateFiles}
+									user={this.state.user}
 								/>
 								<FormInput
-									updateValue={this.updateValue}
+									user={this.state.user}
+									id={this.state.contact_index}
 									updateFiles={this.updateFiles}
 								/>
 							</div>
 						</Route>
+						<Route path="/chat_profile">
+							{modalWindowAdd}
+							<ProfileGroupHead
+								title={this.state.contact_title}
+								addUser={this.addUser}
+							/>
+							<ProfileGroup
+								id={this.state.contact_index}
+								leave={this.leaveChat}
+							/>
+						</Route>
 						<Route path="/profile">
 							<ProfileHead />
-							<ProfileEdit />
+							<ProfileEdit user={this.state.user} />
 						</Route>
 						<Route path="/">
 							<div className="contact-list">
-								<ChatHead />
-								<ChatList name={this.state.name} update={this.updateDisplay} />
+								<ChatHead update={this.addChat} />
+								{modalWindowAddChat}
+								{modalAddContact}
+								{modalAuth}
+								<ChatList
+									modalWindow={this.state.modal_window}
+									update={this.updateDisplay}
+									user={this.state.user}
+								/>
 								<div
 									className="button"
 									onClick={this.addContact}
@@ -140,6 +199,7 @@ class Messenger extends React.Component {
 								>
 									<img src={pencil} alt="create_contact" className="pencil" />
 								</div>
+								<div height="50px" />
 							</div>
 						</Route>
 					</Switch>

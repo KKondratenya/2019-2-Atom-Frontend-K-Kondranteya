@@ -5,12 +5,13 @@ import microphone from '../assets/images/microphone.png';
 import globe from '../assets/images/globe.png';
 import record from '../assets/images/record.png';
 /* eslint react/prop-types: 0 */
-
+/* eslint react/destructuring-assignment: 0 */
 class FormInput extends React.Component {
 	constructor(props) {
 		super(props);
 		this.updateFiles = props.updateFiles;
-		this.updateValue = props.updateValue;
+		this.user = props.user;
+		this.id = props.id;
 		this.state = {
 			recording: false,
 		};
@@ -36,6 +37,23 @@ class FormInput extends React.Component {
 		});
 	}
 
+	updateValue = (type, value) => {
+		const message = {};
+		const date = new Date();
+		const Hours = `0${date.getHours()}`.slice(-2);
+		const Minutes = `0${date.getMinutes()}`.slice(-2);
+		message.content = value;
+		message.date = `${Hours}:${Minutes}`;
+		message.user__username = this.state.user;
+		message.type = type;
+		fetch(
+			`https://127.0.0.1:8000/chats/create_message_front?content=${message.content}&user=${this.user}&id=${this.id}`,
+			{
+				method: 'post',
+			},
+		).then((resp) => resp.json());
+	};
+
 	KeyEvent = (event) => {
 		const input = event.target;
 		if (event.which === 13) {
@@ -51,7 +69,13 @@ class FormInput extends React.Component {
 
 	handleFiles = (event) => {
 		const { files } = event.target;
+		const formData = new FormData();
+		formData.append('url', files[0], 'image.png');
 		if (files.length) {
+			fetch('https://localhost:8000/chats/upload_front', {
+				method: 'POST',
+				body: formData,
+			});
 			const src = window.URL.createObjectURL(files[0]);
 			this.updateFiles('image', src);
 		}
@@ -107,18 +131,18 @@ class FormInput extends React.Component {
 					onChange={(event) => this.handleFiles(event)}
 				/>
 				<div className={styles.input}>
-					<textarea
-						type="text"
-						placeholder="Введите сообщение"
-						onKeyPress={(event) => this.KeyEvent(event)}
-						className={styles.inputmessage}
-					/>
 					<img
 						src={clip}
 						className={styles.clip}
 						onClick={() => this.fileClick()}
 						alt="clip"
 						role="presentation"
+					/>
+					<textarea
+						type="text"
+						placeholder="Введите сообщение"
+						onKeyPress={(event) => this.KeyEvent(event)}
+						className={styles.inputmessage}
 					/>
 					<img
 						src={!recording ? microphone : record}

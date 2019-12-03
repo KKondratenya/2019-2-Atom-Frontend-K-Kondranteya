@@ -2,11 +2,26 @@ import React, { useEffect, useRef, useState } from 'react';
 import styles from '../styles/messageContainer.module.css';
 
 /* eslint react/prop-types: 0 */
-function ListItem({ value }) {
-	if (value.type === 'text') {
+function ListItem({ value, user }) {
+	let date = '';
+	if (value.date.length > 5) {
+		date = value.date.slice(11, 16);
+	} else {
+		date = value.date;
+	}
+	if ((value.type === 'text' || !value.type) && value.user__username === user) {
+		return (
+			<div className={styles['my-message']}>
+				{value.content}
+				<div className={styles.date}>{date}</div>
+			</div>
+		);
+	}
+	if ((value.type === 'text' || !value.type) && value.user__username !== user) {
 		return (
 			<div className={styles.message}>
-				{value.inner}
+				<div>{value.user__username}</div>
+				{value.content}
 				<div className={styles.date}>{value.date}</div>
 			</div>
 		);
@@ -15,7 +30,7 @@ function ListItem({ value }) {
 		return (
 			<div className={styles.message}>
 				<img
-					src={value.inner}
+					src={value.content}
 					alt="message"
 					onLoad={() => window.URL.revokeObjectURL(value.src)}
 				/>
@@ -28,8 +43,9 @@ function ListItem({ value }) {
 			<div className={styles.message}>
 				<audio
 					controls
-					src={value.inner}
+					src={value.content}
 					onLoad={() => window.URL.revokeObjectURL(value.src)}
+					style={{ width: '40vw' }}
 				>
 					<track kind="captions" />
 				</audio>
@@ -46,10 +62,31 @@ function ListItem({ value }) {
 	}
 }
 
-function List({ name, files, updateFiles }) {
+function List({ id, files, updateFiles, user }) {
 	const messageEndRef = useRef(null);
 
 	const [dragEvent, setDrag] = useState(true);
+
+	const [messages, setMessages] = useState([]);
+
+	const pollItems = () => {
+		fetch(`https://localhost:8000/chats/message_front?id=${id}&user=${user}`)
+			.then((resp) => resp.json())
+			.then((data) => setMessages(data.data));
+	};
+
+	const t = setInterval(() => pollItems(), 1000);
+
+	useEffect(() => {
+		scrollToBottom();
+		return () => {
+			clearInterval(t);
+		};
+	});
+
+	useEffect(() => {
+		pollItems();
+	}, []);
 
 	const scrollToBottom = () => {
 		messageEndRef.current.scrollIntoView();
@@ -69,13 +106,11 @@ function List({ name, files, updateFiles }) {
 		setDrag(true);
 	};
 
-	useEffect(scrollToBottom);
-
 	if (dragEvent) {
 		return (
 			<div className={styles.result} onDragEnter={() => setDrag(false)}>
-				{name.map((value, index) => (
-					<ListItem key={String(index)} value={value} />
+				{messages.map((value, index) => (
+					<ListItem key={String(index)} value={value} user={user} />
 				))}
 				{files.map((value, index) => (
 					<ListItem key={String(index)} value={value} />
