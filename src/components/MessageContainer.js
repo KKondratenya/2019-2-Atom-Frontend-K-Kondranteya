@@ -72,7 +72,8 @@ function List({ id, files, updateFiles, user }) {
 	const pollItems = () => {
 		fetch(`https://localhost:8000/chats/message_front?id=${id}&user=${user}`)
 			.then((resp) => resp.json())
-			.then((data) => setMessages(data.data));
+			.then((data) => setMessages(data.data))
+			.then((data) => console.log(messages));
 	};
 
 	const t = setInterval(() => pollItems(), 1000);

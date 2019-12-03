@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import avatar from '../assets/images/spongebob.jpg';
 import styles from '../styles/chatList.module.css';
 /* eslint react/prop-types: 0 */
+/* eslint react-hooks/exhaustive-deps: 0 */
+
 function ListItem({ value, update, index }) {
 	let date = value.last_message_date;
 	date = date.slice(11, 16);

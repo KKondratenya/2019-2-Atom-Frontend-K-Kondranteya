@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import ModalWindow from './ModalWindow.js';
 import styles from '../styles/messageHeadStyles.module.css';
 import glass from '../assets/images/magnifying-glass.png';
 import arrow from '../assets/images/left-arrow.png';

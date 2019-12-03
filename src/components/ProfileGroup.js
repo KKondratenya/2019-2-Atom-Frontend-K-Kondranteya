@@ -22,15 +22,6 @@ function ProfileGroup({ id, leave }) {
 			.then((data) => setUsers(data.data));
 	}, [id]);
 
-	const KeyEvent = (event) => {
-		const input = event.target;
-		if (event.which === 13) {
-			fetch(`https://localhost:8000/profile/find_users/${input.value}`)
-				.then((resp) => resp.json())
-				.then((data) => setUsers(data.data));
-		}
-	};
-
 	return (
 		<div>
 			<Link to="/" style={{ textDecoration: 'none' }}>
