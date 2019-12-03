@@ -74,7 +74,7 @@ function List({ id, files, updateFiles, user }) {
 		fetch(`https://localhost:8000/chats/message_front?id=${id}&user=${user}`)
 			.then((resp) => resp.json())
 			.then((data) => setMessages(data.data))
-			.then(data => console.log(messages));
+			.then((data) => console.log(messages));
 	};
 
 	const t = setInterval(() => pollItems(), 1000);
@@ -88,9 +88,9 @@ function List({ id, files, updateFiles, user }) {
 
 	useEffect(() => {
 		fetch(`https://localhost:8000/chats/message_front?id=${id}&user=${user}`)
-		.then((resp) => resp.json())
-		.then((data) => setMessages(data.data))
-		.then(data => console.log(messages));
+			.then((resp) => resp.json())
+			.then((data) => setMessages(data.data))
+			.then((data) => console.log(messages));
 	}, []);
 
 	const scrollToBottom = () => {
