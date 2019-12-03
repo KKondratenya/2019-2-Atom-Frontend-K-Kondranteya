@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styles from '../styles/messageContainer.module.css';
 
 /* eslint react/prop-types: 0 */
+/* eslint react-hooks/exhaustive-deps: 0 */
 function ListItem({ value, user }) {
 	let date = '';
 	if (value.date.length > 5) {
@@ -73,7 +74,7 @@ function List({ id, files, updateFiles, user }) {
 		fetch(`https://localhost:8000/chats/message_front?id=${id}&user=${user}`)
 			.then((resp) => resp.json())
 			.then((data) => setMessages(data.data))
-			.then((data) => console.log(messages));
+			.then(data => console.log(messages));
 	};
 
 	const t = setInterval(() => pollItems(), 1000);
@@ -86,7 +87,10 @@ function List({ id, files, updateFiles, user }) {
 	});
 
 	useEffect(() => {
-		pollItems();
+		fetch(`https://localhost:8000/chats/message_front?id=${id}&user=${user}`)
+		.then((resp) => resp.json())
+		.then((data) => setMessages(data.data))
+		.then(data => console.log(messages));
 	}, []);
 
 	const scrollToBottom = () => {
