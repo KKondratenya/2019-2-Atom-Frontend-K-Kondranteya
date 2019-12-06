@@ -16,24 +16,34 @@ class FormInput extends React.Component {
 		};
 	}
 
-	async componentDidMount() {
-		const constraints = { audio: true };
-		const mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
-		this.mediaRecorder = new MediaRecorder(mediaStream);
-		let chunks = [];
-		this.mediaRecorder.addEventListener('start', (event) => {
-			event.preventDefault();
-		});
-		this.mediaRecorder.addEventListener('stop', (event) => {
-			event.preventDefault();
-			const blob = new Blob(chunks, { type: this.mediaRecorder.mimeType });
-			chunks = [];
-			const audioURL = URL.createObjectURL(blob);
-			this.updateFiles('audio', audioURL);
-		});
-		this.mediaRecorder.addEventListener('dataavailable', (event) => {
-			chunks.push(event.data);
-		});
+	async getMedia() {
+		try {
+			const constraints = { audio: true };
+			const mediaStream = await navigator.mediaDevices.getUserMedia(
+				constraints,
+			);
+			this.mediaRecorder = new MediaRecorder(mediaStream);
+			let chunks = [];
+			this.mediaRecorder.start();
+			this.mediaRecorder.addEventListener('start', (event) => {
+				event.preventDefault();
+			});
+			this.mediaRecorder.addEventListener('stop', (event) => {
+				event.preventDefault();
+				const blob = new Blob(chunks, { type: this.mediaRecorder.mimeType });
+				chunks = [];
+				const audioURL = URL.createObjectURL(blob);
+				this.updateFiles('audio', audioURL);
+			});
+			this.mediaRecorder.addEventListener('dataavailable', (event) => {
+				chunks.push(event.data);
+			});
+			this.setState({
+				recording: true,
+			});
+		} catch (err) {
+			alert('Нет доступа к аудио');
+		}
 	}
 
 	KeyEvent = (event) => {
@@ -79,11 +89,8 @@ class FormInput extends React.Component {
 
 	handleAudio = () => {
 		if ('mediaDevices' in navigator) {
-			if (this.mediaRecorder.state === 'inactive') {
-				this.mediaRecorder.start();
-				this.setState({
-					recording: true,
-				});
+			if (!this.mediaRecorder || this.mediaRecorder.state === 'inactive') {
+				this.getMedia();
 			} else if (this.mediaRecorder.state === 'recording') {
 				this.mediaRecorder.stop();
 				this.setState({

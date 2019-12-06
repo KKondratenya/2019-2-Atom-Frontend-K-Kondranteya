@@ -30,7 +30,7 @@ function ListItem({ value, lastmessage, update, index }) {
 
 function ChatList({ name, update }) {
 	return (
-		<div className="list">
+		<div className={styles.list}>
 			{name.map((value, index) => (
 				<ListItem
 					key={String(index)}

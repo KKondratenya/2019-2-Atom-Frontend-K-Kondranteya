@@ -1,10 +1,8 @@
 .result {
-	bottom: 20px;
-	height: 85vh;
 	display: flex;
+	flex-grow: 1;
 	flex-direction: column;
-	margin: 5px;
-	flex-wrap: nowrap;
+	flex-wrap: wrap;
 	overflow-y: auto;
 	overflow-x: hidden;
 	flex-flow: column nowrap;
@@ -16,7 +14,7 @@
 }
 
 .date {
-	font-size: 1vh;
+	font-size: 10px;
 	font-style: oblique;
 	text-align: right;
 	margin: 2px;
@@ -28,15 +26,15 @@
 	margin: 10px;
 	max-width: 40%;
 	padding: 1px;
-	word-break: break-all;
+	word-wrap: break-word;
 	background-color: #f6e1f5;
 	transition-property: left;
 	transition-duration: 1s;
 	border-radius: 10px;
-	font-size: 2vh;
-	line-height: 2vh;
+	font-size: 20px;
+	line-height: 20px;
 	border: 3px;
-	align-self: flex-end;
+	align-self: flex-start;
 }
 
 .drag {
@@ -49,8 +47,26 @@
 
 .result-drag {
 	background-color: #edeef0;
-	height: 85vh;
+	flex-grow: 1;
 	bottom: 20px;
 	overflow-y: auto;
 	overflow-x: hidden;
+}
+
+.my-message {
+	white-space: pre-wrap;
+	position: relative;
+	margin: 10px;
+	max-width: 40%;
+	padding: 1px;
+	word-wrap: break-word;
+	background-color: white;
+	transition-property: left;
+	transition-duration: 1s;
+	border-radius: 10px;
+	font-size: 20px;
+	line-height: 20px;
+	border: 5px;
+	border-color: black;
+	align-self: flex-end;
 }

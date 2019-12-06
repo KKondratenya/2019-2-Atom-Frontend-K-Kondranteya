@@ -1,9 +1,9 @@
 .inputmessage {
-	width: 91vw;
-	height: 5vh;
+	flex-grow: 1;
+	height: 50px;
 	overflow-y: hidden;
-	font-size: 2vh;
-	line-height: 2vh;
+	font-size: 25px;
+	line-height: 25px;
 	resize: none;
 	border: none;
 }
@@ -17,8 +17,8 @@ input[type='submit'] {
 }
 
 .clip {
-	width: 5vh;
-	height: 5vh;
+	height: 50px;
+	width: 50px;
 }
 
 .clip:hover {
