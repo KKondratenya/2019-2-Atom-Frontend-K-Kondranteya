@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import avatar from '../assets/images/spongebob.jpg';
-import '../styles/chatList.css';
+import styles from '../styles/chatList.module.css';
 /* eslint react/prop-types: 0 */
 function ListItem({ value, lastmessage, update, index }) {
 	let message = lastmessage;
@@ -13,15 +13,15 @@ function ListItem({ value, lastmessage, update, index }) {
 	return (
 		<Link to="/chat" style={{ textDecoration: 'none' }}>
 			<div
-				className="contact"
+				className={styles.contact}
 				onClick={() => update(index)}
 				role="presentation"
 			>
-				<img className="avatarchat" src={avatar} alt="avatar" />
-				<div className="messagelist">
-					<div className="datechat">{message.date}</div>
-					<div className="userchat">{value}</div>
-					<div className="innerchat">{message.inner}</div>
+				<img className={styles.avatar} src={avatar} alt="avatar" />
+				<div className={styles.messagelist}>
+					<div className={styles.date}>{message.date}</div>
+					<div className={styles.user}>{value}</div>
+					<div className={styles.inner}>{message.inner}</div>
 				</div>
 			</div>
 		</Link>
@@ -30,7 +30,7 @@ function ListItem({ value, lastmessage, update, index }) {
 
 function ChatList({ name, update }) {
 	return (
-		<div className="list">
+		<div className={styles.list}>
 			{name.map((value, index) => (
 				<ListItem
 					key={String(index)}

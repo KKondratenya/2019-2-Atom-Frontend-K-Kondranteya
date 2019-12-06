@@ -27,16 +27,16 @@ class Messenger extends React.Component {
 		}
 		this.state = {
 			name: messageBox,
-			display_chat: { display: 'none' },
-			display_contact: { display: 'block' },
 			contact_index: 0,
+			files: [],
 		};
 		this.updateValue = this.updateValue.bind(this);
 		this.updateDisplay = this.updateDisplay.bind(this);
 		this.addContact = this.addContact.bind(this);
+		this.updateFiles = this.updateFiles.bind(this);
 	}
 
-	updateValue = (value) => {
+	updateValue = (type, value) => {
 		const message = {};
 		const date = new Date();
 		const Hours = `0${date.getHours()}`.slice(-2);
@@ -44,6 +44,7 @@ class Messenger extends React.Component {
 		message.inner = value;
 		message.date = `${Hours}:${Minutes}`;
 		message.user = 'user';
+		message.type = type;
 		this.setState(function(prevState) {
 			const changeState = [...prevState.name];
 			changeState[prevState.contact_index].messages.push(message);
@@ -63,11 +64,27 @@ class Messenger extends React.Component {
 		});
 	};
 
+	updateFiles = (type, src) => {
+		const message = {};
+		const date = new Date();
+		const Hours = `0${date.getHours()}`.slice(-2);
+		const Minutes = `0${date.getMinutes()}`.slice(-2);
+		message.inner = src;
+		message.date = `${Hours}:${Minutes}`;
+		message.user = 'user';
+		message.type = type;
+		const data = new FormData();
+		data.append(type, src);
+		fetch('https://tt-front.now.sh/upload', {
+			method: 'POST',
+			body: data,
+		});
+		this.setState(function(prevState) {
+			return { files: [...prevState.files, message] };
+		});
+	};
+
 	updateDisplay = (index) => {
-		this.setState((prevState) => ({
-			display_chat: prevState.display_contact,
-			display_contact: prevState.display_chat,
-		}));
 		if (index !== -1) {
 			this.setState({
 				contact_index: index,
@@ -99,8 +116,13 @@ class Messenger extends React.Component {
 								/>
 								<List
 									name={this.state.name[this.state.contact_index].messages}
+									files={this.state.files}
+									updateFiles={this.updateFiles}
 								/>
-								<FormInput value="Hi" updateValue={this.updateValue} />
+								<FormInput
+									updateValue={this.updateValue}
+									updateFiles={this.updateFiles}
+								/>
 							</div>
 						</Route>
 						<Route path="/profile">

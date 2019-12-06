@@ -1,37 +1,41 @@
 import React from 'react';
 import avatar from '../assets/images/spongebob.jpg';
-import '../styles/profileEdit.css';
+import styles from '../styles/profileEdit.module.css';
 /* eslint react/prop-types: 0 */
 function ProfileEdit({ updateProfile }) {
 	return (
-		<div className="profile">
-			<img src={avatar} className="avatarprofile" alt="avatar" />
-			<div className="fullname">
-				<div className="point">Full name</div>
+		<div className={styles.profile}>
+			<img src={avatar} className={styles.avatar} alt="avatar" />
+			<div className={styles.fullname}>
+				<div className={styles.point}>Full name</div>
 				<input
 					type="text"
 					placeholder="input fullname"
-					className="inputfullname"
+					className={styles.inputfullname}
 				/>
 			</div>
 			<div>
-				<div className="fullname">
-					<div className="point">Username</div>
+				<div className={styles.fullname}>
+					<div className={styles.point}>Username</div>
 					@
 					<input
 						type="text"
 						placeholder="input username"
-						className="inputfullname"
+						className={styles.inputfullname}
 					/>
 				</div>
-				<div className="hint">Minimum lenght is 5 characters</div>
+				<div className={styles.hint}>Minimum lenght is 5 characters</div>
 			</div>
 			<div>
-				<div className="bio">
-					<div className="point">Bio</div>
-					<textarea type="text" placeholder="input bio" className="inputbio" />
+				<div className={styles.bio}>
+					<div className={styles.point}>Bio</div>
+					<textarea
+						type="text"
+						placeholder="input bio"
+						className={styles.inputbio}
+					/>
 				</div>
-				<div className="hint">Any details about you</div>
+				<div className={styles.hint}>Any details about you</div>
 			</div>
 		</div>
 	);

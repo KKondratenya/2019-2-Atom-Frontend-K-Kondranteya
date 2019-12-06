@@ -1,13 +1,13 @@
 .fullname {
 	width: 80vw;
-	height: 8vh;
+	height: 80px;
 	overflow-y: hidden;
-	font-size: 2vh;
-	line-height: 2vh;
+	font-size: 20px;
+	line-height: 20px;
 	resize: none;
 	border-radius: 5px;
 	background-color: #ededed;
-	margin-top: 3vh;
+	margin-top: 15px;
 	border-bottom-style: solid;
 	border-color: #a7a7a7;
 }
@@ -20,19 +20,19 @@ input[type='submit'] {
 	background-color: #ededed;
 	resize: none;
 	border: none;
-	height: 2vh;
-	width: 75vw;
+	height: 20px;
+	width: 70vw;
 	outline: none;
-	font-size: 2vh;
+	font-size: 20px;
 	margin: 2px;
 }
 
-.avatarprofile {
-	width: 20vw;
-	height: 20vw;
+.avatar {
+	width: 100px;
+	height: 100px;
 	border-radius: 100%;
 	object-fit: cover;
-	margin: 3vh;
+	margin: 20px;
 }
 
 .profile {
@@ -42,17 +42,17 @@ input[type='submit'] {
 }
 
 .point {
-	margin: 1vh;
+	margin: 10px;
 	color: #c3c3c3;
-	font-size: 1.5vh;
+	font-size: 15px;
 }
 
 .inputbio {
 	width: 75vw;
-	height: 15vh;
+	height: 150px;
 	overflow-y: hidden;
-	font-size: 2vh;
-	line-height: 2vh;
+	font-size: 20px;
+	line-height: 20px;
 	outline: none;
 	resize: none;
 	background-color: #ededed;
@@ -61,20 +61,20 @@ input[type='submit'] {
 
 .bio {
 	width: 80vw;
-	height: 20vh;
+	height: 175px;
 	overflow-y: hidden;
-	font-size: 2vh;
-	line-height: 2vh;
+	font-size: 20px;
+	line-height: 20px;
 	resize: none;
 	border-radius: 5px;
 	background-color: #ededed;
-	margin-top: 3vh;
+	margin-top: 15px;
 	border-bottom-style: solid;
 	border-color: #a7a7a7;
 }
 
 .hint {
-	font-size: 1.5vh;
+	font-size: 15px;
 	color: #7e7e7e;
 	margin-left: 2vw;
 }

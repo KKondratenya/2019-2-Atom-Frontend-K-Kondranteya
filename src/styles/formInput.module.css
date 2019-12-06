@@ -1,0 +1,26 @@
+.inputmessage {
+	flex-grow: 1;
+	height: 50px;
+	overflow-y: hidden;
+	font-size: 25px;
+	line-height: 25px;
+	resize: none;
+	border: none;
+}
+
+input[type='submit'] {
+	visibility: collapse;
+}
+
+.input {
+	display: flex;
+}
+
+.clip {
+	height: 50px;
+	width: 50px;
+}
+
+.clip:hover {
+	background-color: #edeef0;
+}
