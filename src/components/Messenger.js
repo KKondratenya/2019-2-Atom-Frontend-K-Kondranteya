@@ -7,6 +7,7 @@ import MessageHead from './MessageHead.js';
 import FormInput from './FormInput.js';
 import List from './MessageContainer.js';
 import ModalWindow from './ModalWindow.js';
+import ModalWindowGroup from './ModalWindowGroup.js';
 import ProfileGroup from './ProfileGroup.js';
 import ProfileGroupHead from './ProfileGroupHead.js';
 import ModalWindowAuth from './ModalWindowAuth.js';
@@ -27,6 +28,7 @@ class Messenger extends React.Component {
 			modal_window_add_contact: false,
 			modal_window_add: false,
 			modal_window_create_chat: false,
+			error: '',
 		};
 		this.updateDisplay = this.updateDisplay.bind(this);
 		this.addContact = this.addContact.bind(this);
@@ -76,15 +78,34 @@ class Messenger extends React.Component {
 		});
 	};
 
+	closeAddContact = () => {
+		console.log('Hi');
+		this.setState({
+			modal_window_add_contact: false,
+		});
+	};
+
 	addUser = () => {
 		this.setState({
 			modal_window_add: true,
 		});
 	};
 
+	closeAddUser = () => {
+		this.setState({
+			modal_window_add: false,
+		});
+	};
+
 	addChat = () => {
 		this.setState({
 			modal_window_create_chat: true,
+		});
+	};
+
+	closeAddChat = () => {
+		this.setState({
+			modal_window_create_chat: false,
 		});
 	};
 
@@ -100,13 +121,21 @@ class Messenger extends React.Component {
 	};
 
 	updateUserName = (value) => {
-		this.setState({
-			user: value,
-			modal_window_user: false,
-		});
-		fetch(`https://localhost:8000/profile/create/${value}`).then((res) =>
-			res.json(),
-		);
+		fetch(`https://localhost:8000/profile/create/${value}`)
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data.data);
+				if (data.data !== 'change username') {
+					this.setState({
+						user: value,
+						modal_window_user: false,
+					});
+				} else {
+					this.setState({
+						error: 'Change username',
+					});
+				}
+			});
 	};
 
 	createChat = (value) => {
@@ -131,16 +160,28 @@ class Messenger extends React.Component {
 
 	render() {
 		const modalWindowAddChat = this.state.modal_window_create_chat ? (
-			<ModalWindowAuth updateUserName={this.createChat} />
+			<ModalWindowGroup
+				updateUserName={this.createChat}
+				closeWindow={this.closeAddChat}
+			/>
 		) : null;
 		const modalWindowAdd = this.state.modal_window_add ? (
-			<ModalWindow update={this.addUserToChat} />
+			<ModalWindow
+				update={this.addUserToChat}
+				closeWindow={this.closeAddUser}
+			/>
 		) : null;
 		const modalAuth = this.state.modal_window_user ? (
-			<ModalWindowAuth updateUserName={this.updateUserName} />
+			<ModalWindowAuth
+				updateUserName={this.updateUserName}
+				error={this.state.error}
+			/>
 		) : null;
 		const modalAddContact = this.state.modal_window_add_contact ? (
-			<ModalWindow update={this.contactCreate} />
+			<ModalWindow
+				update={this.contactCreate}
+				closeWindow={this.closeAddContact}
+			/>
 		) : null;
 		return (
 			<Router>

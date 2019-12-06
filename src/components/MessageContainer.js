@@ -23,7 +23,7 @@ function ListItem({ value, user }) {
 			<div className={styles.message}>
 				<div>{value.user__username}</div>
 				{value.content}
-				<div className={styles.date}>{value.date}</div>
+				<div className={styles.date}>{date}</div>
 			</div>
 		);
 	}
@@ -80,7 +80,7 @@ function List({ id, files, updateFiles, user }) {
 	const t = setInterval(() => pollItems(), 1000);
 
 	useEffect(() => {
-		scrollToBottom();
+		// scrollToBottom();
 		return () => {
 			clearInterval(t);
 		};
@@ -90,7 +90,7 @@ function List({ id, files, updateFiles, user }) {
 		fetch(`https://localhost:8000/chats/message_front?id=${id}&user=${user}`)
 			.then((resp) => resp.json())
 			.then((data) => setMessages(data.data))
-			.then((data) => console.log(messages));
+			.then(scrollToBottom);
 	}, []);
 
 	const scrollToBottom = () => {

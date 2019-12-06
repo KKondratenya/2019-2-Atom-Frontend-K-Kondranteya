@@ -5,7 +5,7 @@
 	z-index: 1;
 	background-color: #8e24aa;
 	top: 100px;
-	height: 84px;
+	height: 114px;
 	width: 300px;
 	border-radius: 6px;
 }
@@ -41,4 +41,10 @@ input {
 	font-weight: bolder;
 	margin-left: 5px;
 	font-size: 20px;
+}
+
+.close {
+	height: 25px;
+	width: 25px;
+	float: right;
 }

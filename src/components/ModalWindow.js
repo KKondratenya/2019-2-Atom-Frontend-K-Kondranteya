@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../styles/modalWindowStyles.module.css';
+import close from '../assets/images/close.png';
 /* eslint react/prop-types: 0 */
 function ListItem({ value, index, update }) {
 	return (
@@ -15,7 +16,7 @@ function ListItem({ value, index, update }) {
 	);
 }
 
-function ModalWindow({ update }) {
+function ModalWindow({ update, closeWindow }) {
 	const [users, setUsers] = useState([]);
 
 	const KeyEvent = (event) => {
@@ -27,9 +28,15 @@ function ModalWindow({ update }) {
 		}
 	};
 
-	console.log(users);
+	console.log(closeWindow);
 	return (
 		<div className={styles['modal-window']}>
+			<img
+				className={styles.close}
+				src={close}
+				onClick={() => closeWindow()}
+				role="presentation"
+			/>
 			<div className={styles.hint}>Введите пользователя</div>
 			<input
 				type="text"
