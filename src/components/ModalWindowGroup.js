@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from '../styles/modalWindowStyles.module.css';
 import close from '../assets/images/close.png';
 /* eslint react/prop-types: 0 */
@@ -17,6 +17,7 @@ function ModalWindowGroup({ updateUserName, error, closeWindow }) {
 				src={close}
 				onClick={() => closeWindow()}
 				role="presentation"
+				alt="close"
 			/>
 			<div className={styles.hint}>Введите чат</div>
 			<input

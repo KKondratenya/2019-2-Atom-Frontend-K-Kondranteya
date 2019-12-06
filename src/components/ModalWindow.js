@@ -36,6 +36,7 @@ function ModalWindow({ update, closeWindow }) {
 				src={close}
 				onClick={() => closeWindow()}
 				role="presentation"
+				alt="close"
 			/>
 			<div className={styles.hint}>Введите пользователя</div>
 			<input
