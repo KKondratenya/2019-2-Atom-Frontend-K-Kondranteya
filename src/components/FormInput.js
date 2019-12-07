@@ -1,4 +1,5 @@
 import React from 'react';
+import { writeMessage, sendFiles } from '../actions/messengerActions';
 import styles from '../styles/formInput.module.css';
 import clip from '../assets/images/clip.png';
 import microphone from '../assets/images/microphone.png';
@@ -9,8 +10,6 @@ import record from '../assets/images/record.png';
 class FormInput extends React.Component {
 	constructor(props) {
 		super(props);
-		this.updateFiles = props.updateFiles;
-		this.updateValue = props.updateValue;
 		this.state = {
 			recording: false,
 		};
@@ -33,7 +32,7 @@ class FormInput extends React.Component {
 				const blob = new Blob(chunks, { type: this.mediaRecorder.mimeType });
 				chunks = [];
 				const audioURL = URL.createObjectURL(blob);
-				this.updateFiles('audio', audioURL);
+				sendFiles(audioURL, 'audio');
 			});
 			this.mediaRecorder.addEventListener('dataavailable', (event) => {
 				chunks.push(event.data);
@@ -53,7 +52,7 @@ class FormInput extends React.Component {
 			if (event.shiftKey) {
 				input.value += '\n';
 			} else if (event.target.value !== '') {
-				this.updateValue('text', event.target.value);
+				writeMessage(event.target.value);
 				input.value = '';
 			}
 		}
@@ -63,7 +62,7 @@ class FormInput extends React.Component {
 		const { files } = event.target;
 		if (files.length) {
 			const src = window.URL.createObjectURL(files[0]);
-			this.updateFiles('image', src);
+			sendFiles(src, 'image');
 		}
 	};
 

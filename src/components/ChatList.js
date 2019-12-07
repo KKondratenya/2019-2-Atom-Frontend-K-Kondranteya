@@ -1,20 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import avatar from '../assets/images/spongebob.jpg';
 import styles from '../styles/chatList.module.css';
+import { switchChat } from '../actions/messengerActions';
 /* eslint react/prop-types: 0 */
-function ListItem({ value, lastmessage, update, index }) {
+function ListItem({ value, lastmessage, index }) {
 	let message = lastmessage;
 	if (!message) {
 		message = {};
 		message.inner = 'Начните диалог с пользователем';
 		message.date = '';
 	}
+
 	return (
 		<Link to="/chat" style={{ textDecoration: 'none' }}>
 			<div
 				className={styles.contact}
-				onClick={() => update(index)}
+				onClick={() => switchChat(index)}
 				role="presentation"
 			>
 				<img className={styles.avatar} src={avatar} alt="avatar" />
@@ -28,15 +31,14 @@ function ListItem({ value, lastmessage, update, index }) {
 	);
 }
 
-function ChatList({ name, update }) {
+function ChatList({ chats }) {
 	return (
 		<div className={styles.list}>
-			{name.map((value, index) => (
+			{chats.map((value, index) => (
 				<ListItem
 					key={String(index)}
 					value={value.user}
 					lastmessage={value.messages[value.messages.length - 1]}
-					update={update}
 					index={index}
 				/>
 			))}
@@ -44,4 +46,10 @@ function ChatList({ name, update }) {
 	);
 }
 
-export default ChatList;
+function mapStateToProps(state) {
+	return {
+		chats: state.message.name,
+	};
+}
+
+export default connect(mapStateToProps)(ChatList);
