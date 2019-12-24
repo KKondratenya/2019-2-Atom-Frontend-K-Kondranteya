@@ -1,7 +1,7 @@
-import React , { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/city.css';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+/* eslint react/prop-types: 0 */
 function Geo({ city }) {
 	const [cityDaily, setCity] = useState(false);
 	let renderInfo;
@@ -9,11 +9,17 @@ function Geo({ city }) {
 		if ('geolocation' in navigator) {
 			navigator.geolocation.getCurrentPosition((position) => {
 				const { latitude } = position.coords;
-				const { longitude } = (position.coords);
-				console.log(latitude, longitude)
-				fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude.toFixed(1)}&lon=${longitude.toFixed(1)}&appid=7ae3973c1cff0f607e622fa2bcc37d48`)
-				.then(resp => resp.json())
-				.then(data => setCity(data))
+				const { longitude } = position.coords;
+				console.log(latitude, longitude);
+				fetch(
+					`https://api.openweathermap.org/data/2.5/weather?lat=${latitude.toFixed(
+						1,
+					)}&lon=${longitude.toFixed(
+						1,
+					)}&appid=7ae3973c1cff0f607e622fa2bcc37d48`,
+				)
+					.then((resp) => resp.json())
+					.then((data) => setCity(data));
 			});
 		} else {
 			console.log('Геолокация недоступна');
@@ -25,16 +31,16 @@ function Geo({ city }) {
 	}, []);
 
 	if (cityDaily) {
-		let renderInfo = (<div>
-				<div className="city-name">city.name</div>
+		renderInfo = (
+			<div>
+				<div className="city-name">{cityDaily.name}</div>
 				<div className="temperature">
-					<div className="temp-info">city.main.temp</div>
+					<div className="temp-info">{cityDaily.main.temp}</div>
 					<div className="celsium-info">°C</div>
 				</div>
-				<div className="weather">
-					city.weather[0].main
-				</div>
-			</div>)
+				<div className="weather">{cityDaily.weather[0].main}</div>
+			</div>
+		);
 	} else {
 		renderInfo = null;
 	}
@@ -50,5 +56,5 @@ function Geo({ city }) {
 	);
 }
 
-//export default Cities;
-export default (Geo);
+// export default Cities;
+export default Geo;

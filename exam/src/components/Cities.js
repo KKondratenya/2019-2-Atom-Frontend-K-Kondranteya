@@ -1,11 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import City from './City';
-
+/* eslint react/prop-types: 0 */
 function Cities({ city }) {
-	const [cities, setCities] = useState([]);
-
 	const getCity = () => {
 		fetch(
 			'https://api.openweathermap.org/data/2.5/forecast?q=London&appid=7ae3973c1cff0f607e622fa2bcc37d48',
@@ -16,29 +14,25 @@ function Cities({ city }) {
 	};
 
 	useEffect(() => {
-		//getCity();
+		// getCity();
 	}, []);
-	let cityRender; 
+	let cityRender;
 	if (city.length) {
-		cityRender = (<div>
-			{city.map((value, index) => (
-				<City
-					key={String(index)}
-					city={value}
-					index={index}
-				/>
-			))}
-		</div>)
+		cityRender = (
+			<div>
+				{city.map((value, index) => (
+					<City key={String(index)} city={value} index={index} />
+				))}
+			</div>
+		);
 	} else {
 		cityRender = null;
 	}
 	return (
 		<div>
-			<div className='heading'>
+			<div className="heading">
 				<div>
-					<div>
-						Manage cities
-					</div>
+					<div>Manage cities</div>
 					<Link to="/geo" style={{ textDecoration: 'none' }}>
 						Гео
 					</Link>
@@ -53,5 +47,5 @@ function mapStateToProps(state) {
 		city: state.weather.cities,
 	};
 }
-//export default Cities;
+// export default Cities;
 export default connect(mapStateToProps)(Cities);
