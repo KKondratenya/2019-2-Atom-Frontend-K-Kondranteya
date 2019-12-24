@@ -1,4 +1,4 @@
-import ActionWeather from '../constants/ActionWeather';
+import ActionWeather from '../constants/ActionWeather.js';
 import store from '../store';
 
 export function setWeather(data) {
