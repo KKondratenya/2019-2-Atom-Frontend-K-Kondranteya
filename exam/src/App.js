@@ -9,7 +9,7 @@ import './App.css';
 function App() {
 	const getCities = () => {
 		fetch(
-			'http://api.openweathermap.org/data/2.5/box/city?bbox=12,32,15,37,10&appid=7ae3973c1cff0f607e622fa2bcc37d48',
+			'https://api.openweathermap.org/data/2.5/box/city?bbox=12,32,15,37,10&appid=7ae3973c1cff0f607e622fa2bcc37d48',
 			{ headers: { origin: document.origin } },
 		)
 			.then((resp) => resp.json())
