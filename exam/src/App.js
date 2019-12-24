@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import logo from './logo.svg';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Cities from './components/Cities';
-import CityInfo from './components/CityInfo';
+import Cities from './components/Cities.js';
+import CityInfo from './components/CityInfo.js';
 import Geo from './components/Geo';
 import { setWeather } from './actions/weatherActions.js';
 import './App.css';

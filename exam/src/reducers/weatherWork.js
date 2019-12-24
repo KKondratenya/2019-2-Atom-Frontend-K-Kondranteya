@@ -1,4 +1,4 @@
-import ActionTypes from '../constants/ActionWeather';
+import ActionTypes from '../constants/ActionWeather.js';
 
 /* eslint no-param-reassign: 0 */
 const initialState = {

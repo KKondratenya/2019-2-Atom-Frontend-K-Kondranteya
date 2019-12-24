@@ -1,9 +1,7 @@
 import { combineReducers } from 'redux';
-import message from './messageWork';
-import weather from './weatherWork';
+import weather from './weatherWork.js';
 
 const rootReducer = combineReducers({
-	message,
 	weather,
 });
 

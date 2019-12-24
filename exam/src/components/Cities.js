@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import City from './City';
+import City from './City.js';
 /* eslint react/prop-types: 0 */
 function Cities({ city }) {
 	const getCity = () => {
