@@ -3,6 +3,7 @@ import '../styles/city.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 /* eslint react/prop-types: 0 */
+/* eslint react-hooks/exhaustive-deps : 0 */
 function CityInfo({ city }) {
 	const [cityDaily, setCity] = useState(false);
 	console.log(city.id);
