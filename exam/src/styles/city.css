@@ -1,22 +1,68 @@
 .city {
-	display: flex;
 	background-color: white;
 	border: 1px solid black;
-	margin: 7px;
-	padding: 7px;
+	border-radius: 5px;
+	border-color: #f7f7f7;
+	margin: 10px;
+	padding: 10px;
+	height: 120px;
 }
 
 .temp {
 	margin-left: auto;
+	font-size: 50px;
 }
 
 .city-name {
-	font-size: 17px;
+	font-size: 40px;
 	text-align: center;
 }
 
 .temp-info {
-	font-size: 50px;
+	font-size: 70px;
 	margin: 5px;
 	margin-top: 10px;
+}
+
+.city-information {
+	display: flex;
+	height: 70px;
+	color: #686868;
+	border-bottom: 1px solid black;
+	border-color: #e8e8e8;
+}
+
+.heading {
+	font-size: 40px;
+	background-color: #fbfbfb;
+	width: 60vw;
+	margin-left: 20vw;
+}
+
+.celsium-info {
+	margin-top: 25px;
+}
+
+.temperature {
+	margin: 10px;
+	display: flex;
+}
+
+.weather {
+	margin-left: 20px;
+	font-size: 20px;
+}
+
+.weather-city {
+	display: flex;
+}
+
+div {
+	padding: 5px;
+	font-size: 20px;
+	color: #686868;
+}
+
+.weather-temp {
+	margin-left: auto;
 }

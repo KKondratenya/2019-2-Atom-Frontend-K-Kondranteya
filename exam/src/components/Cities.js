@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { connect } from 'react-redux';
-import { setCity } from '../actions/weatherActions.js';
+import { Link } from 'react-router-dom';
 import City from './City';
 
 function Cities({ city }) {
@@ -8,7 +8,7 @@ function Cities({ city }) {
 
 	const getCity = () => {
 		fetch(
-			'https://api.openweathermap.org/data/2.5/weather?q=london,UK&appid=b41984b8b5135f1695c5faac30990138',
+			'https://api.openweathermap.org/data/2.5/forecast?q=London&appid=7ae3973c1cff0f607e622fa2bcc37d48',
 			{ headers: { origin: document.origin } },
 		)
 			.then((resp) => resp.json())
@@ -16,20 +16,35 @@ function Cities({ city }) {
 	};
 
 	useEffect(() => {
-		console.log(city);
-		getCity();
+		//getCity();
 	}, []);
-
-	return (
-		<div>
-			Manage cities
+	let cityRender; 
+	if (city.length) {
+		cityRender = (<div>
 			{city.map((value, index) => (
 				<City
 					key={String(index)}
 					city={value}
-					onClick={(index) => setCity(index)}
+					index={index}
 				/>
 			))}
+		</div>)
+	} else {
+		cityRender = null;
+	}
+	return (
+		<div>
+			<div className='heading'>
+				<div>
+					<div>
+						Manage cities
+					</div>
+					<Link to="/geo" style={{ textDecoration: 'none' }}>
+						Гео
+					</Link>
+				</div>
+			</div>
+			{cityRender}
 		</div>
 	);
 }
