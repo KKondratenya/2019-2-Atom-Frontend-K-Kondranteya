@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Cities from './components/Cities.js';
 import CityInfo from './components/CityInfo.js';
@@ -8,8 +7,6 @@ import { setWeather } from './actions/weatherActions.js';
 import './App.css';
 
 function App() {
-	let cities = [];
-
 	const getCities = () => {
 		fetch(
 			'http://api.openweathermap.org/data/2.5/box/city?bbox=12,32,15,37,10&appid=7ae3973c1cff0f607e622fa2bcc37d48',

@@ -4,18 +4,7 @@ import { Link } from 'react-router-dom';
 import City from './City.js';
 /* eslint react/prop-types: 0 */
 function Cities({ city }) {
-	const getCity = () => {
-		fetch(
-			'https://api.openweathermap.org/data/2.5/forecast?q=London&appid=7ae3973c1cff0f607e622fa2bcc37d48',
-			{ headers: { origin: document.origin } },
-		)
-			.then((resp) => resp.json())
-			.then((data) => console.log(data));
-	};
-
-	useEffect(() => {
-		// getCity();
-	}, []);
+	useEffect(() => {}, []);
 	let cityRender;
 	if (city.length) {
 		cityRender = (
