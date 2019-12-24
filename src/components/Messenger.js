@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createChat } from '../actions/messengerActions';
+import { create } from '../actions/messengerActions';
 import ChatHead from './ChatHead.js';
 import ProfileHead from './ProfileHead.js';
 import ProfileEdit from './ProfileEdit.js';
@@ -9,10 +9,11 @@ import MessageHead from './MessageHead.js';
 import FormInput from './FormInput.js';
 import List from './MessageContainer.js';
 import ChatList from './ChatList';
+// import ActionMessenger from '../constants/ActionMessenger';
 import pencil from '../assets/images/pencil-edit-button.png';
-
+/* eslint react/prop-types: 0 */
 /* eslint react/destructuring-assignment: 0 */
-function Messenger() {
+function Messenger({ createChat }) {
 	return (
 		<Router>
 			<div className="messenger">
@@ -43,4 +44,10 @@ function Messenger() {
 	);
 }
 
-export default connect(null)(Messenger);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		createChat: () => dispatch(create()),
+	};
+};
+
+export default connect(null, mapDispatchToProps)(Messenger);

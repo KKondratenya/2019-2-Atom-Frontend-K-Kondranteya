@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { connect } from 'react-redux';
-import { sendFiles } from '../actions/messengerActions';
+import { send } from '../actions/messengerActions';
 import styles from '../styles/messageContainer.module.css';
 /* eslint react/prop-types: 0 */
 function ListItem({ value }) {
@@ -47,7 +47,7 @@ function ListItem({ value }) {
 	}
 }
 
-function List({ message, file }) {
+function List({ message, files, sendFiles }) {
 	const messageEndRef = useRef(null);
 
 	const [dragEvent, setDrag] = useState(true);
@@ -61,9 +61,9 @@ function List({ message, file }) {
 		const data = event.dataTransfer;
 		const userFiles = data.files;
 		for (let i = 0; i < userFiles.length; i += 1) {
-			const fileSend = userFiles[i];
-			if (file.Sendtype.startsWith('image/')) {
-				const src = window.URL.createObjectURL(fileSend);
+			const file = userFiles[i];
+			if (file.type.startsWith('image/')) {
+				const src = window.URL.createObjectURL(file);
 				sendFiles(src, 'image');
 			}
 		}
@@ -78,7 +78,7 @@ function List({ message, file }) {
 				{message.map((value, index) => (
 					<ListItem key={String(index)} value={value} />
 				))}
-				{file.map((value, index) => (
+				{files.map((value, index) => (
 					<ListItem key={String(index)} value={value} />
 				))}
 
@@ -102,8 +102,14 @@ function List({ message, file }) {
 function mapStateToProps(state) {
 	return {
 		message: state.message.name[state.message.contact_index].messages,
-		file: state.message.files,
+		files: state.message.files,
 	};
 }
 
-export default connect(mapStateToProps)(List);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		sendFiles: (value, type) => dispatch(send(value, type)),
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(List);

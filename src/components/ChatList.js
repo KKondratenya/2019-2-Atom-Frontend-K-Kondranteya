@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import avatar from '../assets/images/spongebob.jpg';
 import styles from '../styles/chatList.module.css';
-import { switchChat } from '../actions/messengerActions';
+import { switchCh } from '../actions/messengerActions';
 /* eslint react/prop-types: 0 */
-function ListItem({ value, lastmessage, index }) {
+function ListItem({ switchChat, value, lastmessage, index }) {
 	let message = lastmessage;
 	if (!message) {
 		message = {};
@@ -31,7 +31,7 @@ function ListItem({ value, lastmessage, index }) {
 	);
 }
 
-function ChatList({ chats }) {
+function ChatList({ switchChat, chats }) {
 	return (
 		<div className={styles.list}>
 			{chats.map((value, index) => (
@@ -40,6 +40,7 @@ function ChatList({ chats }) {
 					value={value.user}
 					lastmessage={value.messages[value.messages.length - 1]}
 					index={index}
+					switchChat={switchChat}
 				/>
 			))}
 		</div>
@@ -52,4 +53,10 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps)(ChatList);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		switchChat: (index) => dispatch(switchCh(index)),
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatList);

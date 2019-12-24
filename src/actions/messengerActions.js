@@ -1,20 +1,21 @@
 import ActionMessenger from '../constants/ActionMessenger';
-import store from '../store';
+// import store from '../store';
 
-export function switchChat(index) {
-	store.dispatch({
+export function switchCh(index) {
+	return {
 		type: ActionMessenger.SWITCH_CHAT,
 		payload: index,
-	});
+	};
 }
 
-export function createChat() {
-	store.dispatch({
+export function create(index) {
+	return {
 		type: ActionMessenger.CREATE_CHAT,
-	});
+		payload: '1',
+	};
 }
 
-export function writeMessage(value) {
+export function write(value) {
 	const newMessage = {};
 	const date = new Date();
 	const Hours = `0${date.getHours()}`.slice(-2);
@@ -23,13 +24,13 @@ export function writeMessage(value) {
 	newMessage.date = `${Hours}:${Minutes}`;
 	newMessage.user = 'user';
 	newMessage.type = 'text';
-	store.dispatch({
+	return {
 		type: ActionMessenger.WRITE_MESSAGE,
 		payload: newMessage,
-	});
+	};
 }
 
-export function sendFiles(value, type) {
+export function send(value, type) {
 	const file = {};
 	const fileDate = new Date();
 	const fileHours = `0${fileDate.getHours()}`.slice(-2);
@@ -38,8 +39,8 @@ export function sendFiles(value, type) {
 	file.date = `${fileHours}:${fileMinutes}`;
 	file.user = 'user';
 	file.type = type;
-	store.dispatch({
+	return {
 		type: ActionMessenger.SEND_FILES,
 		payload: file,
-	});
+	};
 }

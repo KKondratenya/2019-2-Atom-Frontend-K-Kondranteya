@@ -1,8 +1,9 @@
 import ActionTypes from '../constants/ActionMessenger';
 
 /* eslint no-param-reassign: 0 */
+/* eslint no-case-declarations: 0 */
 const box = localStorage.getItem('box-container');
-let messageBox = null;
+let messageBox;
 if (box) {
 	messageBox = JSON.parse(box);
 } else {
@@ -19,18 +20,18 @@ const initialState = {
 	files: [],
 };
 
-let json = null;
-
 export default function message(state = initialState, action) {
 	switch (action.type) {
 		case ActionTypes.WRITE_MESSAGE:
-			state.name[state.contact_index].messages = [
+			const msgs = [
 				...state.name[state.contact_index].messages,
 				action.payload,
 			];
-			json = JSON.stringify(state.name);
+			const newState = { ...state };
+			newState.name[state.contact_index].messages = msgs;
+			const json = JSON.stringify(state.name);
 			localStorage.setItem('box-container', json);
-			return { ...state };
+			return newState;
 		case ActionTypes.SWITCH_CHAT:
 			return {
 				...state,
