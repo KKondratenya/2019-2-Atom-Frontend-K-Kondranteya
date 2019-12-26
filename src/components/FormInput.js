@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { write, send } from '../actions/messengerActions';
 import styles from '../styles/formInput.module.css';
 import clip from '../assets/images/clip.png';
 import microphone from '../assets/images/microphone.png';
@@ -9,11 +11,11 @@ import record from '../assets/images/record.png';
 class FormInput extends React.Component {
 	constructor(props) {
 		super(props);
-		this.updateFiles = props.updateFiles;
-		this.updateValue = props.updateValue;
 		this.state = {
 			recording: false,
 		};
+		this.sendFiles = props.sendFiles;
+		this.writeMessage = props.writeMessage;
 	}
 
 	async getMedia() {
@@ -33,7 +35,7 @@ class FormInput extends React.Component {
 				const blob = new Blob(chunks, { type: this.mediaRecorder.mimeType });
 				chunks = [];
 				const audioURL = URL.createObjectURL(blob);
-				this.updateFiles('audio', audioURL);
+				this.sendFiles(audioURL, 'audio');
 			});
 			this.mediaRecorder.addEventListener('dataavailable', (event) => {
 				chunks.push(event.data);
@@ -53,7 +55,7 @@ class FormInput extends React.Component {
 			if (event.shiftKey) {
 				input.value += '\n';
 			} else if (event.target.value !== '') {
-				this.updateValue('text', event.target.value);
+				this.writeMessage(event.target.value);
 				input.value = '';
 			}
 		}
@@ -63,7 +65,7 @@ class FormInput extends React.Component {
 		const { files } = event.target;
 		if (files.length) {
 			const src = window.URL.createObjectURL(files[0]);
-			this.updateFiles('image', src);
+			this.sendFiles(src, 'image');
 		}
 	};
 
@@ -77,8 +79,7 @@ class FormInput extends React.Component {
 			navigator.geolocation.getCurrentPosition((position) => {
 				const { latitude } = position.coords;
 				const { longitude } = position.coords;
-				this.updateValue(
-					'geo',
+				this.writeMessage(
 					`https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`,
 				);
 			});
@@ -147,4 +148,11 @@ class FormInput extends React.Component {
 	}
 }
 
-export default FormInput;
+const mapDispatchToProps = (dispatch) => {
+	return {
+		writeMessage: (value) => dispatch(write(value)),
+		sendFiles: (value, type) => dispatch(send(value, type)),
+	};
+};
+
+export default connect(null, mapDispatchToProps)(FormInput);

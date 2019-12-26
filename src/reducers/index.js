@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import counter from './counter';
+import message from './messageWork';
 
 const rootReducer = combineReducers({
-	counter,
+	message,
 });
 
 export default rootReducer;

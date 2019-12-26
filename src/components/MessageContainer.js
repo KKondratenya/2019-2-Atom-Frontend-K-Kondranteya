@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { connect } from 'react-redux';
+import { send } from '../actions/messengerActions';
 import styles from '../styles/messageContainer.module.css';
-
 /* eslint react/prop-types: 0 */
 function ListItem({ value }) {
 	if (value.type === 'text') {
@@ -46,7 +47,7 @@ function ListItem({ value }) {
 	}
 }
 
-function List({ name, files, updateFiles }) {
+function List({ message, files, sendFiles }) {
 	const messageEndRef = useRef(null);
 
 	const [dragEvent, setDrag] = useState(true);
@@ -63,7 +64,7 @@ function List({ name, files, updateFiles }) {
 			const file = userFiles[i];
 			if (file.type.startsWith('image/')) {
 				const src = window.URL.createObjectURL(file);
-				updateFiles('image', src);
+				sendFiles(src, 'image');
 			}
 		}
 		setDrag(true);
@@ -74,12 +75,13 @@ function List({ name, files, updateFiles }) {
 	if (dragEvent) {
 		return (
 			<div className={styles.result} onDragEnter={() => setDrag(false)}>
-				{name.map((value, index) => (
+				{message.map((value, index) => (
 					<ListItem key={String(index)} value={value} />
 				))}
 				{files.map((value, index) => (
 					<ListItem key={String(index)} value={value} />
 				))}
+
 				<div ref={messageEndRef} />
 			</div>
 		);
@@ -97,4 +99,17 @@ function List({ name, files, updateFiles }) {
 	);
 }
 
-export default List;
+function mapStateToProps(state) {
+	return {
+		message: state.message.name[state.message.contact_index].messages,
+		files: state.message.files,
+	};
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		sendFiles: (value, type) => dispatch(send(value, type)),
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(List);
