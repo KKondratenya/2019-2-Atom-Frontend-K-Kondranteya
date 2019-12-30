@@ -1,5 +1,5 @@
 import ActionTypes from '../constants/ActionTypes';
-
+/**/
 const initialState = 0;
 
 export default function counter(state = initialState, action) {
