@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import City from './City.js';
+import plus from '../assets/plus-icon.png';
 /* eslint react/prop-types: 0 */
 function Cities({ city }) {
 	useEffect(() => {}, []);
@@ -20,12 +21,17 @@ function Cities({ city }) {
 	return (
 		<div>
 			<div className="heading">
-				<div>
-					<div>Manage cities</div>
-					<Link to="/geo" style={{ textDecoration: 'none' }}>
+				<div className="topic">Manage cities</div>
+				{/* <Link to="/geo" style={{ textDecoration: 'none' }}>
 						Гео
-					</Link>
-				</div>
+</Link> */}
+				<Link
+					className="add-link"
+					to="/addCity"
+					style={{ textDecoration: 'none' }}
+				>
+					<img src={plus} />
+				</Link>
 			</div>
 			{cityRender}
 		</div>
