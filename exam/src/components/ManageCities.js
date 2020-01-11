@@ -15,7 +15,7 @@ function ManageCities({ weatherIcons }) {
 
 	function find() {
 		fetch(
-			`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=7ae3973c1cff0f607e622fa2bcc37d48`,
+			`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=7ae3973c1cff0f607e622fa2bcc37d48`,
 		)
 			.then((resp) => resp.json())
 			.then((data) => {
@@ -41,9 +41,7 @@ function ManageCities({ weatherIcons }) {
 				<div className="detail-temp">
 					<div className="city-name">{city2.name}</div>
 					<div className="temperature">
-						<div className="temp-info">
-							{(city2.main.temp - 273).toFixed(1)}
-						</div>
+						<div className="temp-info">{city2.main.temp}</div>
 						<div className="celsium-info">°C</div>
 						{checkWeather(city2.weather[0].icon)}
 					</div>
