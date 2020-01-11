@@ -1,4 +1,3 @@
-import { func } from 'prop-types';
 import ActionWeather from '../constants/ActionWeather.js';
 import store from '../store';
 

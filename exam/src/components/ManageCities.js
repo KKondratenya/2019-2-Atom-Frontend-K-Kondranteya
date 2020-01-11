@@ -19,7 +19,7 @@ function ManageCities({ weatherIcons }) {
 		)
 			.then((resp) => resp.json())
 			.then((data) => {
-				if (data.cod == 200) {
+				if (data.cod === 200) {
 					setCity2(data);
 				} else {
 					setRender(<div>Can not find {city} :(</div>);

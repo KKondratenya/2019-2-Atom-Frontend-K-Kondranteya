@@ -30,7 +30,7 @@ function Cities({ city }) {
 					to="/addCity"
 					style={{ textDecoration: 'none' }}
 				>
-					<img src={plus} />
+					<img src={plus} alt="plus" />
 				</Link>
 			</div>
 			{cityRender}

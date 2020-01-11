@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import '../styles/city.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { kelvinToCelsium } from '../functions/kelvinToCelsium';
 /* eslint react/prop-types: 0 */
 /* eslint react-hooks/exhaustive-deps : 0 */
 function CityInfo({ city, weatherIcons }) {
