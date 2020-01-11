@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setCity } from '../actions/weatherActions.js';
-import { kelvinToCelsium } from '../functions/kelvinToCelsium';
 import '../styles/city.css';
 /* eslint react/prop-types: 0 */
 /* eslint jsx-a11y/click-events-have-key-events : 0 */
