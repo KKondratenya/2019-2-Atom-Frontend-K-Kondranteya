@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/2019-2-Atom-Frontend-K-Kondranteya/static/css/main.70733166.chunk.css",
+    "main.js": "/2019-2-Atom-Frontend-K-Kondranteya/static/js/main.e9202e2e.chunk.js",
+    "main.js.map": "/2019-2-Atom-Frontend-K-Kondranteya/static/js/main.e9202e2e.chunk.js.map",
+    "runtime-main.js": "/2019-2-Atom-Frontend-K-Kondranteya/static/js/runtime-main.d404f0ca.js",
+    "runtime-main.js.map": "/2019-2-Atom-Frontend-K-Kondranteya/static/js/runtime-main.d404f0ca.js.map",
+    "static/js/2.f38a026f.chunk.js": "/2019-2-Atom-Frontend-K-Kondranteya/static/js/2.f38a026f.chunk.js",
+    "static/js/2.f38a026f.chunk.js.map": "/2019-2-Atom-Frontend-K-Kondranteya/static/js/2.f38a026f.chunk.js.map",
+    "index.html": "/2019-2-Atom-Frontend-K-Kondranteya/index.html",
+    "precache-manifest.69f7751e20aff9979e239be1691743a3.js": "/2019-2-Atom-Frontend-K-Kondranteya/precache-manifest.69f7751e20aff9979e239be1691743a3.js",
+    "service-worker.js": "/2019-2-Atom-Frontend-K-Kondranteya/service-worker.js",
+    "static/css/main.70733166.chunk.css.map": "/2019-2-Atom-Frontend-K-Kondranteya/static/css/main.70733166.chunk.css.map",
+    "static/js/2.f38a026f.chunk.js.LICENSE": "/2019-2-Atom-Frontend-K-Kondranteya/static/js/2.f38a026f.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d404f0ca.js",
+    "static/js/2.f38a026f.chunk.js",
+    "static/css/main.70733166.chunk.css",
+    "static/js/main.e9202e2e.chunk.js"
+  ]
+}
